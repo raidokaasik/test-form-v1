@@ -2,6 +2,9 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 import { Controller } from 'react-hook-form'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import { Dayjs } from 'dayjs'
+
+export type dateType = Dayjs | null
 
 interface FormDateFieldProps {
   label: string
@@ -37,6 +40,7 @@ export const FormDateField = ({
               openPickerButton: {
                 color: 'primary',
                 disableRipple: true,
+                onBlur: onBlur,
               },
               inputAdornment: {
                 position: 'end',
@@ -44,6 +48,7 @@ export const FormDateField = ({
               textField: {
                 variant: 'standard',
                 name: name,
+                fullWidth: true,
                 disabled: disabled,
                 onBlur: onBlur,
                 error: Boolean(fieldState.error),
