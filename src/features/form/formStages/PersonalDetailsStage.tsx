@@ -67,7 +67,7 @@ export const PersonalDetailsStage = () => {
       form: { personalDetails },
     },
     actions,
-  }: any = useStateMachine({ setFormStage, setPersonalDetails })
+  } = useStateMachine({ setFormStage, setPersonalDetails })
 
   const methods = useForm<IPersonalDetailsStage>({
     defaultValues: getDefaultValues(personalDetails),
@@ -113,7 +113,7 @@ export const PersonalDetailsStage = () => {
   )
 }
 
-const getDefaultValues = (personalDetails: IPersonalDetailsStage) => {
+const getDefaultValues = (personalDetails: IPersonalDetailsStage | null) => {
   return {
     personalId: personalDetails?.personalId ?? '',
     firstName: personalDetails?.firstName ?? '',

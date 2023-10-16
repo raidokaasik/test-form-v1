@@ -36,7 +36,7 @@ export const RelationsStage = () => {
       form: { relations },
     },
     actions,
-  }: any = useStateMachine({
+  } = useStateMachine({
     setFormStage,
     setRelations,
   })

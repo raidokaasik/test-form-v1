@@ -29,7 +29,7 @@ export const EducationStage = () => {
       form: { education },
     },
     actions,
-  }: any = useStateMachine({ setFormStage, setEducation })
+  } = useStateMachine({ setFormStage, setEducation })
 
   const methods = useForm<IEducation>({
     defaultValues: {
@@ -46,7 +46,7 @@ export const EducationStage = () => {
 
   const onSubmit = (data: IEducation) => {
     actions.setEducation(data)
-    actions.setFormStage('result')
+    actions.setFormStage('previousExperience')
   }
 
   const handleBackButton = () => {
