@@ -12,7 +12,6 @@ import {
   IFamilyMember,
   Parents,
 } from './relationsSections/FamilyMembers'
-import { useEffect } from 'react'
 import {
   CloseFriends,
   ICloseFriend,
@@ -53,7 +52,6 @@ export const RelationsStage = () => {
   })
 
   const onSubmit = (data: any) => {
-    console.log('DATA::', data)
     actions.setRelations(data)
     actions.setFormStage('education')
   }
@@ -62,12 +60,7 @@ export const RelationsStage = () => {
     const currentValues = methods.getValues()
     actions.setRelations(currentValues)
     actions.setFormStage('personalDetails')
-    console.log('SET_BACK_BUTTON::', currentValues)
   }
-
-  useEffect(() => {
-    console.log('RELATIONS::', relations)
-  }, [])
 
   return (
     <FormStageWrapper

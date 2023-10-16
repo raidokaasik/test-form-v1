@@ -1,6 +1,5 @@
 import Typography from '@mui/material/Typography'
 import { useForm, FormProvider } from 'react-hook-form'
-import { useEffect } from 'react'
 import { useStateMachine } from 'little-state-machine'
 import { setEducation, setFormStage } from '../formActions/actions'
 import { FormStageWrapper } from '../formWrappers/FormStageWrapper'
@@ -46,19 +45,14 @@ export const EducationStage = () => {
   })
 
   const onSubmit = (data: IEducation) => {
-    console.log('DATA::', data)
     actions.setEducation(data)
     actions.setFormStage('result')
   }
 
-  useEffect(() => {
-    console.log('MOUNTS STATE::')
-  }, [])
-
   const handleBackButton = () => {
     const currentValues = methods.getValues()
-    actions.setFormStage('education')
-    console.log('SET_BACK_BUTTON::', currentValues)
+    actions.setEducation(currentValues)
+    actions.setFormStage('relations')
   }
 
   return (
