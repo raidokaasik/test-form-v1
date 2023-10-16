@@ -36,6 +36,7 @@ export const FormDateField = ({
             slotProps={{
               openPickerButton: {
                 color: 'primary',
+                disableRipple: true,
               },
               inputAdornment: {
                 position: 'end',
