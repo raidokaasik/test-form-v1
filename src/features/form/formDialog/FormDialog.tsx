@@ -22,12 +22,9 @@ export const FormDialog = ({
           margin: 0,
           maxWidth: 'unset',
           maxHeight: 'unset',
-          height: { xs: 'calc(100% - 113px)', sm: '90%' },
+          height: { xs: 'calc(100% - 106px)', sm: '90%' },
           borderRadius: { xs: '0px', sm: '2px' },
           position: 'relative',
-          // width: '100%',
-          // margin: 0,
-          // height: { xs: '100vh', sm: '90vh' },
           top: { xs: '60px', sm: 'unset' },
         },
       }}

@@ -6,11 +6,8 @@ export const FormHeader = () => {
     <Grid container>
       <Grid item xs={12}>
         <Typography textAlign={'right'} fontSize={'13px'}>
-          Siseministri 28. detsembri 2009. aasta määruse nr 96 „Isikuankeedi
-          vorm“ Lisa
-        </Typography>
-        <Typography textAlign={'right'} fontSize={'13px'}>
-          (siseministri 21. juuni 2017. aasta määruse nr 31 lisa sõnastuses)
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
+          imperdiet varius nibh a consectetur.
         </Typography>
       </Grid>
     </Grid>

@@ -3,7 +3,6 @@ import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
 import { PageWrapper } from '../components/PageWrapper'
 import { FormDialog } from '../features/form/formDialog/FormDialog'
-import { RenderFormStage } from '../features/form/RenderFormStage'
 import Box from '@mui/material/Box'
 import { FormHeader } from '../features/form/formHeader/FormHeader'
 import { PersonalDataForm } from '../features/form/Form'
@@ -12,7 +11,7 @@ export const Hiring = () => {
   const [openForm, setOpenForm] = useState<boolean>(false)
 
   return (
-    <PageWrapper headerText={'Tule meile tööle'}>
+    <PageWrapper headerText={'Lorem ipsum'}>
       <Box
         width={'100%'}
         display={'flex'}
@@ -21,9 +20,8 @@ export const Hiring = () => {
       >
         <Box width={'60%'}>
           <Typography marginTop={'16px'} marginBottom={'16px'} variant="body1">
-            Kui Sa oled julge, teotahteline ja õpihimuline inimene ning soovid
-            muuta keskkonda turvalisemaks, siis täida meie ankeet, mille leiad
-            kodulehelt, ja kandideeri.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
+            imperdiet varius nibh a consectetur.
           </Typography>
         </Box>
         <Box width={'40%'}>
@@ -34,7 +32,6 @@ export const Hiring = () => {
             justifyContent={'center'}
             gap={'10px'}
           >
-            <Typography variant="body1">Alusta täitmist:</Typography>
             <Button
               variant="contained"
               color="secondary"
@@ -47,27 +44,29 @@ export const Hiring = () => {
         </Box>
       </Box>
       <Typography fontSize={'14px'} fontWeight={700}>
-        Tingimused:
+        Lorem ipsum :
       </Typography>
       <Typography marginTop={'16px'} marginBottom={'16px'} variant="body1">
-        Sul peab olema lisaks keskharidusele vähemalt kutseharidus, mõnes
-        valdkonnas on vajalik kõrgharidus ja võõrkeelte oskus. Sa pead olema
-        terve ja füüsiliselt heas vormis Eesti kodanik, kes valdab eesti keelt
-        seadusega kehtestatud ulatuses.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
+        imperdiet varius nibh a consectetur. Nunc et purus leo. Quisque accumsan
+        porta vehicula. Proin sollicitudin laoreet dui, eget euismod felis.
+        Praesent nec imperdiet nunc, non varius lectus. Aenean ac nibh commodo,
+        sagittis sapien vel, condimentum sem.
       </Typography>
       <Typography marginTop={'16px'} marginBottom={'16px'} variant="body1">
-        Kasuks tuleb eelnev töökogemus, hea suhtlemisoskus ja magistrikraad.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
+        imperdiet varius nibh a consectetur.
       </Typography>
       <Typography marginTop={'16px'} marginBottom={'16px'} variant="body1">
-        Sobivaks kandidaadiks osutumise korral tuleb Sul taotleda
-        riigisaladusele juurdepääsu luba, mis on eelduseks tööle asumisel (vt
-        Riigisaladuse ja salastatud välisteabe kaitse kord), ning läbida
-        tervisekontroll.
+        Aliquam aliquet tristique pulvinar. Cras ornare neque ante, at
+        pellentesque justo vehicula sit amet. Morbi egestas urna mi, sed posuere
+        nulla dapibus at. Nulla ex lacus, vehicula eu massa a, porta congue mi.
+        Vivamus vestibulum purus vitae mauris gravida porttitor sit amet porta
+        nisl. Integer rhoncus ultrices nulla, a venenatis lectus placerat ac.
       </Typography>
       <Typography marginTop={'16px'} marginBottom={'16px'} variant="body1">
-        Enne kandideerimist tutvu palun Kaitsepolitseiameti põhimäärusega,
-        politseiametnikule kehtestatud kutsesobivusnõuetega ning õigusaktidega,
-        mis reguleerivad meie tööd.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
+        imperdiet varius nibh a consectetur.
       </Typography>
       <FormDialog
         openForm={openForm}

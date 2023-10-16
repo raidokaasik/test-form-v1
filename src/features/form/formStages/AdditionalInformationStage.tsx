@@ -47,7 +47,6 @@ export const AdditionalInformationStage = () => {
   })
 
   const onSubmit = (data: IAdditionalInformation) => {
-    console.log('DATA::', data)
     actions.setAdditionalInformation(data)
     actions.setFormStage('result')
   }
