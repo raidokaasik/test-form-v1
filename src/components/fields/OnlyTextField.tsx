@@ -1,17 +1,18 @@
 import { TextField } from '@mui/material'
 import React from 'react'
 import { IMaskInput } from 'react-imask'
-import { onlyLetters } from '../../utils/validations'
+import { onlyLetters, onlyLettersAndNumbers } from '../../utils/validations'
 import { Controller } from 'react-hook-form'
 import { capitalizeFirstLetter } from 'src/utils/helpers'
 
 interface OnlyTextFieldProps {
   label: string
   helperText: string
-  capitalize?: boolean
   control: any
   name: string
+  capitalize?: boolean
   disabled?: boolean
+  allownumbers?: boolean
 }
 
 export const OnlyTextFieldComponent = ({
@@ -21,6 +22,7 @@ export const OnlyTextFieldComponent = ({
   helperText,
   capitalize,
   disabled = false,
+  allownumbers = false,
 }: OnlyTextFieldProps) => (
   <Controller
     control={control}
@@ -49,6 +51,9 @@ export const OnlyTextFieldComponent = ({
         label={label}
         fullWidth
         InputProps={{
+          inputProps: {
+            allownumbers: +allownumbers,
+          },
           inputComponent: OnlyTextMask as any,
         }}
         error={Boolean(fieldState.error)}
@@ -65,7 +70,7 @@ const OnlyTextMask = React.forwardRef((props: any, ref) => {
   return (
     <IMaskInput
       {...other}
-      mask={onlyLetters}
+      mask={props.allownumbers ? onlyLettersAndNumbers : onlyLetters}
       inputRef={ref}
       lazy={true}
       onAccept={(value: string) =>
