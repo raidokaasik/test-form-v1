@@ -5,6 +5,7 @@ import { IPersonalDetailsStage } from './formStages/PersonalDetailsStage'
 import { IRelations } from './formStages/RelationsStage'
 import { IEducation } from './formStages/EducationStage'
 import { IPerviousExperience } from './formStages/PreviousExperience'
+import { IAdditionalInformation } from './formStages/AdditionalInformationStage'
 
 export interface IStore {
   form: {
@@ -12,6 +13,7 @@ export interface IStore {
     relations: IRelations | null
     education: IEducation | null
     previousExperience: IPerviousExperience | null
+    additionalInformation: IAdditionalInformation | null
   }
   formStage: string
 }
@@ -26,8 +28,9 @@ createStore(
       },
       education: null,
       previousExperience: null,
+      additionalInformation: null,
     },
-    formStage: 'previousExperience',
+    formStage: 'additionalInformation',
   },
   {
     persist: 'none',

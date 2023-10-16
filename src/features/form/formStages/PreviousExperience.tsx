@@ -50,7 +50,7 @@ export const PerviousExperienceStage = () => {
   const onSubmit = (data: IPerviousExperience) => {
     console.log('DATA::', data)
     actions.setPreviousExperience(data)
-    actions.setFormStage('result')
+    actions.setFormStage('additionalInformation')
   }
 
   const handleBackButton = () => {

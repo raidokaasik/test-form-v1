@@ -1,0 +1,20 @@
+{
+  "questions": [
+    {
+      "text": "Kas Te kuulute erakonda?",
+      "key": "belongToAPoliticalParty"
+    },
+    {
+      "text": "Kas Te olete või olete olnud välisriigis kriminaalmenetluses kahtlustatav või süüdistatav ja kas teid on välisriigis kriminaalkorras karistatud?",
+      "key": "foreignCriminalRecord"
+    },
+    {
+      "text": "Kas Teid on distsiplinaarsüüteo toimepanemise eest avalikust teenistusest vabastatud ja teenistusest vabastamisest on möödas vähem kui üks aasta?",
+      "key": "disciplinaryDismissal"
+    },
+    {
+      "text": "Kas saate pensioni, töötasu või muud regulaarset tasu riigilt, mis ei ole Euroopa Majanduspiirkonna liikmesriik või Šveitsi Konföderatsioon või mis ei kuulu Põhja-Atlandi Lepingu Organisatsiooni?",
+      "key": "foreginIncome"
+    }
+  ]
+}

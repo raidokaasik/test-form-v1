@@ -4,6 +4,7 @@ import { useStateMachine } from 'little-state-machine'
 import { Result } from './formStages/Result'
 import { EducationStage } from './formStages/EducationStage'
 import { PerviousExperienceStage } from './formStages/PreviousExperience'
+import { AdditionalInformationStage } from './formStages/AdditionalInformationStage'
 
 export const RenderFormStage = () => {
   const { state }: any = useStateMachine()
@@ -13,6 +14,7 @@ export const RenderFormStage = () => {
     relations: <RelationsStage />,
     education: <EducationStage />,
     previousExperience: <PerviousExperienceStage />,
+    additionalInformation: <AdditionalInformationStage />,
     result: <Result />,
   }
 

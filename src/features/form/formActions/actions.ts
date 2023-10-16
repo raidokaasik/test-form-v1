@@ -3,6 +3,7 @@ import { IEducation } from '../formStages/EducationStage'
 import { IPersonalDetailsStage } from '../formStages/PersonalDetailsStage'
 import { IPerviousExperience } from '../formStages/PreviousExperience'
 import { IRelations } from '../formStages/RelationsStage'
+import { IAdditionalInformation } from '../formStages/AdditionalInformationStage'
 
 export const setFormStage = (state: any, payload: string) => {
   return {
@@ -59,6 +60,19 @@ export const setPreviousExperience = (
     form: {
       ...state.form,
       previousExperience: payload,
+    },
+  }
+}
+
+export const setAdditionalInformation = (
+  state: GlobalState,
+  payload: IAdditionalInformation
+): GlobalState => {
+  return {
+    ...state,
+    form: {
+      ...state.form,
+      additionalInformation: payload,
     },
   }
 }
