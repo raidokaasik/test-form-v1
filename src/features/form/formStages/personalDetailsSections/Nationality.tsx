@@ -67,28 +67,19 @@ const NationalitySection = () => {
       <Grid container spacing={2}>
         <Grid item xs={4}>
           <OnlyTextField
-            register={{
-              ...register('origin.nationality', {
-                required: 'Sisestage kodakondsus',
-                ...setCaptializedValueOptions,
-              }),
-            }}
+            control={control}
             capitalize
+            name={'origin.nationality'}
             label={'Kodakondsus'}
-            error={Boolean(errors?.origin?.nationality)}
-            helperText={errors?.origin?.nationality?.message as string}
+            helperText={'Sisestage kodakondsus'}
           />
         </Grid>
         <Grid item xs={4}>
           <OnlyTextField
-            register={{
-              ...register('origin.nativeLanguage', {
-                required: 'Sisestage emakeel',
-              }),
-            }}
+            control={control}
+            name={'origin.nativeLanguage'}
             label={'Emakeel'}
-            error={Boolean(errors?.origin?.nativeLanguage)}
-            helperText={errors?.origin?.nativeLanguage?.message as string}
+            helperText={'Sisestage emakeel'}
           />
         </Grid>
         <Grid item xs={4}>
@@ -106,14 +97,11 @@ const NationalitySection = () => {
         <Grid container spacing={2}>
           <Grid item xs={4}>
             <OnlyTextField
-              register={{
-                ...register('origin.other.nationality', {
-                  required: 'Sisesta kodakondsus',
-                }),
-              }}
+              control={control}
+              capitalize
+              name={'origin.other.nationality'}
               label={'Teise riigi kodakondsus'}
-              error={Boolean(errors?.origin?.other?.nationality)}
-              helperText={errors?.origin?.other?.nationality?.message as string}
+              helperText={'Sisestage kodakondsus'}
             />
           </Grid>
           <Grid item xs={3}>

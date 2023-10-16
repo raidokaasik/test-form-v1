@@ -6,7 +6,10 @@ import { FormStageWrapper } from '../formWrappers/FormStageWrapper'
 import { NextButton } from '../../../components/NextButton'
 import { Nationality } from './personalDetailsSections/Nationality'
 import { Communications } from './personalDetailsSections/Communications'
-import { PreviousNames } from './personalDetailsSections/PreviousNames'
+import {
+  PreviousNames,
+  previousNameDefaultValues,
+} from './personalDetailsSections/PreviousNames'
 import { Address } from './personalDetailsSections/Address'
 import { PersonalDocument } from './personalDetailsSections/PersonalDocument'
 import { PersonalCredentials } from './personalDetailsSections/PersonalCredentials'
@@ -54,7 +57,6 @@ export interface IPersonalDetailsStage {
   address: {
     city: string
     county: string
-    settlement: string
     street: string
     houseNumber: string
     appartmentNr: string
@@ -145,7 +147,7 @@ const getDefaultValues = (personalDetails: IPersonalDetailsStage) => {
       hasPerviouslyUsedNames:
         personalDetails?.previouslyUsedNames.hasPerviouslyUsedNames ?? false,
       names: personalDetails?.previouslyUsedNames.names ?? [
-        { name: '', from: '', to: '' },
+        previousNameDefaultValues,
       ],
     },
     communications: personalDetails?.communications ?? [
@@ -164,7 +166,6 @@ const getDefaultValues = (personalDetails: IPersonalDetailsStage) => {
     address: {
       city: personalDetails?.address.city ?? '',
       county: personalDetails?.address.county ?? '',
-      settlement: personalDetails?.address.settlement ?? '',
       street: personalDetails?.address.street ?? '',
       houseNumber: personalDetails?.address.houseNumber ?? '',
       appartmentNr: personalDetails?.address.appartmentNr ?? '',

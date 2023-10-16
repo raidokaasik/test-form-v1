@@ -22,14 +22,10 @@ const DocumentSection = () => {
       <Grid container spacing={2}>
         <Grid item xs={6}>
           <OnlyTextField
-            register={{
-              ...register('document.docType', {
-                required: 'Sisesta dokumendi tüüp',
-              }),
-            }}
+            control={control}
+            name={'document.docType'}
             label={'Dokumendi nimetus'}
-            helperText={errors?.document?.docType?.message as string}
-            error={Boolean(errors?.document?.docType)}
+            helperText={'Sisestage dokumendi tüüp'}
           />
         </Grid>
         <Grid item xs={6}>
