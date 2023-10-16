@@ -6,7 +6,6 @@ import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import { useFormContext as hookFormContext } from 'react-hook-form'
 import { IPersonalDetailsStage } from '../PersonalDetailsStage'
-import { setCaptializedValueOptions } from 'src/utils/helpers'
 import { OnlyTextField } from 'src/components/fields/OnlyTextField'
 import { FormDateField } from 'src/components/fields/FormDateField/FormDateField'
 
@@ -19,11 +18,10 @@ const defaultOtherFields = {
 
 const NationalitySection = () => {
   const {
-    register,
     setValue,
     clearErrors,
     control,
-    formState: { defaultValues, errors },
+    formState: { defaultValues },
   } = hookFormContext<IPersonalDetailsStage>()
   const [otherNationality, setOtherNationality] = useState<boolean>(
     defaultValues?.origin?.hasOtherNationalityInfo ?? false

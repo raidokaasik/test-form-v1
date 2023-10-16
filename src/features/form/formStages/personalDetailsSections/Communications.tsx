@@ -1,5 +1,4 @@
 import React from 'react'
-// import { ReactComponent as Add } from 'public/icons/add-square-svgrepo-com.svg?url'
 import Grid from '@mui/material/Grid'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
