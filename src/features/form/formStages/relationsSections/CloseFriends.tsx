@@ -113,6 +113,7 @@ const CloseFriendsSection = () => {
             </Grid>
             <Grid item xs={3}>
               <OnlyTextField
+                allownumbers
                 capitalize
                 name={`closeFriends.${index}.address.houseNr` as const}
                 control={control}
