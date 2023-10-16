@@ -18,7 +18,7 @@ import {
   academicEducationDefaultValue,
 } from './educationSections/AcademicEducation'
 
-interface IEducationStage {
+export interface IEducation {
   generalEducation: IGeneralEducation[]
   hasAcademicEducation: boolean
   academicDegrees: IAcademicEducation[]
@@ -32,7 +32,7 @@ export const EducationStage = () => {
     actions,
   }: any = useStateMachine({ setFormStage, setEducation })
 
-  const methods = useForm<IEducationStage>({
+  const methods = useForm<IEducation>({
     defaultValues: {
       generalEducation: education?.generalEducation ?? [
         generalEducationDefaultValue,
@@ -45,7 +45,7 @@ export const EducationStage = () => {
     mode: 'onBlur',
   })
 
-  const onSubmit = (data: IEducationStage) => {
+  const onSubmit = (data: IEducation) => {
     console.log('DATA::', data)
     actions.setEducation(data)
     actions.setFormStage('result')

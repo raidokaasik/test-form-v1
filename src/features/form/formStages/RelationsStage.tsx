@@ -19,9 +19,9 @@ import {
   closeFriend,
 } from './relationsSections/CloseFriends'
 
-interface IRelationsDefaultValues {
-  familyMembers: IFamilyMember[]
-  closeFriends: ICloseFriend[]
+export interface IRelations {
+  familyMembers: IFamilyMember[] | null
+  closeFriends: ICloseFriend[] | null
 }
 
 const familyMembersDefaultValues = [
@@ -42,7 +42,7 @@ export const RelationsStage = () => {
     setRelations,
   })
 
-  const methods = useForm<IRelationsDefaultValues>({
+  const methods = useForm<IRelations>({
     defaultValues: {
       familyMembers: relations?.familyMembers ?? [
         ...familyMembersDefaultValues,
