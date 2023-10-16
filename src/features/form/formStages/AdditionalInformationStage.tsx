@@ -93,6 +93,13 @@ export const AdditionalInformationStage = () => {
           <Questionnaire />
         </form>
       </FormProvider>
+      <Box pl={'16px'} pr={'16px'} pt={'16px'}>
+        <Typography variant="body2" fontSize={'14px'}>
+          Kinnitan esitatud andmete õigsust ning olen nõus enda kohta esitatud
+          andmete kontrollimise ja töötlemisega Politsei- ja Piirivalveameti,
+          Kaitsepolitseiameti või Sisekaitseakadeemia poolt.
+        </Typography>
+      </Box>
     </FormStageWrapper>
   )
 }

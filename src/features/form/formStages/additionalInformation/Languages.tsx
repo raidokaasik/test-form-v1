@@ -59,6 +59,7 @@ const LanguageSection = () => {
               <Grid item xs={5}>
                 <OnlyTextField
                   capitalize
+                  allownumbers
                   name={`languages.${index}.level` as const}
                   control={control}
                   label="Tase"
