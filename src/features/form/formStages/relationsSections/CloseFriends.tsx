@@ -105,6 +105,7 @@ const CloseFriendsSection = () => {
             </Grid>
             <Grid item xs={3}>
               <OnlyTextField
+                capitalize
                 name={`closeFriends.${index}.address.street` as const}
                 control={control}
                 label="Tänav"
@@ -112,12 +113,12 @@ const CloseFriendsSection = () => {
               />
             </Grid>
             <Grid item xs={3}>
-              <MaskField
+              <OnlyTextField
+                capitalize
                 name={`closeFriends.${index}.address.houseNr` as const}
                 control={control}
                 label="Maja number"
                 helperText="Sisestage maja number"
-                type={MaskTypes.NUMBER}
               />
             </Grid>
             <Grid item xs={3}>

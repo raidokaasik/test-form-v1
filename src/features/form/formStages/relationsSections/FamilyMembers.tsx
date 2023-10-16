@@ -140,6 +140,7 @@ const FamilyMembersSection = () => {
                 </Grid>
                 <Grid item xs={3}>
                   <OnlyTextField
+                    capitalize
                     name={`familyMembers.${index}.address.street` as const}
                     control={control}
                     label="Tänav"
@@ -147,12 +148,12 @@ const FamilyMembersSection = () => {
                   />
                 </Grid>
                 <Grid item xs={3}>
-                  <MaskField
+                  <OnlyTextField
+                    capitalize
                     name={`familyMembers.${index}.address.houseNr` as const}
                     control={control}
                     label="Maja number"
                     helperText="Sisestage maja number"
-                    type={MaskTypes.NUMBER}
                   />
                 </Grid>
                 <Grid item xs={3}>

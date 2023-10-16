@@ -42,20 +42,21 @@ const AddressSection = () => {
         </Grid>
         <Grid item xs={4}>
           <OnlyTextField
+            capitalize
             name={'address.street'}
             control={control}
             label="Tänav"
-            capitalize
             helperText="Sisestage tänav"
           />
         </Grid>
         <Grid item xs={4}>
-          <MaskField
+          <OnlyTextField
+            allownumbers
             name={'address.houseNumber'}
             control={control}
             label="Maja number"
+            capitalize
             helperText="Sisestage maja number"
-            type={MaskTypes.NUMBER}
           />
         </Grid>
         <Grid item xs={4}>
