@@ -1,7 +1,6 @@
 import Typography from '@mui/material/Typography'
 import { useForm, FormProvider } from 'react-hook-form'
 import { Box } from '@mui/material'
-import { useEffect } from 'react'
 import { FormStageWrapper } from '../formWrappers/FormStageWrapper'
 import { NextButton } from '../../../components/NextButton'
 import { Nationality } from './personalDetailsSections/Nationality'
@@ -65,7 +64,7 @@ export interface IPersonalDetailsStage {
 export const PersonalDetailsStage = () => {
   const {
     state: {
-      form: { personalDetails, relations },
+      form: { personalDetails },
     },
     actions,
   }: any = useStateMachine({ setFormStage, setPersonalDetails })
@@ -77,14 +76,9 @@ export const PersonalDetailsStage = () => {
   })
 
   const onSubmit = (data: any) => {
-    console.log('DATA::', data)
     actions.setPersonalDetails(data)
     actions.setFormStage('relations')
   }
-
-  useEffect(() => {
-    console.log('MOUNTS STATE::', personalDetails, relations)
-  }, [])
 
   return (
     <FormStageWrapper
