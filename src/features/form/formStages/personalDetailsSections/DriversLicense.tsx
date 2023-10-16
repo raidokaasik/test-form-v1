@@ -50,6 +50,7 @@ const DriversLicenseSection = () => {
               Juhtimisõigus
             </FormLabel>
             <Checkbox
+              disableRipple
               checked={driversLicense}
               onChange={handleHasLicenseCheckbox}
             />

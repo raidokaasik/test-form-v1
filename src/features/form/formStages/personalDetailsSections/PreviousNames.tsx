@@ -10,17 +10,17 @@ import {
 } from 'react-hook-form'
 import { OnlyTextField } from 'src/components/fields/OnlyTextField'
 import { SmallButton } from 'src/components/buttons/SmallButton'
-import { setCaptializedValueOptions } from 'src/utils/helpers'
 import { IPersonalDetailsStage } from '../PersonalDetailsStage'
 import { FormDateField } from 'src/components/fields/FormDateField/FormDateField'
 
+export const previousNameDefaultValues = { name: '', from: '', to: '' }
+
 const PreviouslyUsedNamesSection = () => {
   const {
-    register,
     control,
     setValue,
     clearErrors,
-    formState: { errors, defaultValues },
+    formState: { defaultValues },
   } = hookFormContext<IPersonalDetailsStage>()
 
   const [namesUsedBefore, setNamesUsedBefore] = React.useState<boolean>(
@@ -38,6 +38,7 @@ const PreviouslyUsedNamesSection = () => {
   ) => {
     if (!value) {
       clearErrors('previouslyUsedNames')
+      setValue('previouslyUsedNames.names', [previousNameDefaultValues])
     }
     setNamesUsedBefore(value)
     setValue('previouslyUsedNames.hasPerviouslyUsedNames', value)
@@ -55,6 +56,7 @@ const PreviouslyUsedNamesSection = () => {
               Varem kasutatud nimed
             </FormLabel>
             <Checkbox
+              disableRipple
               checked={namesUsedBefore}
               onChange={handleOtherNamesCheckbox}
             />
@@ -67,28 +69,11 @@ const PreviouslyUsedNamesSection = () => {
             <Grid container spacing={2} key={item.id}>
               <Grid item xs={4}>
                 <OnlyTextField
-                  register={{
-                    ...register(
-                      `previouslyUsedNames.names.${index}.name` as const,
-                      {
-                        required: 'Sisestage nimi',
-                        ...setCaptializedValueOptions,
-                      }
-                    ),
-                  }}
+                  control={control}
                   capitalize
+                  name={`previouslyUsedNames.names.${index}.name` as const}
                   label={'Nimi'}
-                  error={
-                    errors?.previouslyUsedNames?.names
-                      ? Boolean(errors?.previouslyUsedNames?.names[index]?.name)
-                      : false
-                  }
-                  helperText={
-                    errors?.previouslyUsedNames?.names
-                      ? (errors?.previouslyUsedNames?.names[index]?.name
-                          ?.message as string)
-                      : ''
-                  }
+                  helperText={'Sisestage nimi'}
                 />
               </Grid>
               <Grid item xs={3}>
