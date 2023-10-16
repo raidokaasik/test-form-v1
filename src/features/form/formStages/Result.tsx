@@ -1,9 +1,10 @@
-import { Button, Typography } from '@mui/material'
 import Box from '@mui/material/Box'
 import { useStateMachine } from 'little-state-machine'
 import { useEffect } from 'react'
 import { FormStageWrapper } from '../formWrappers/FormStageWrapper'
 import { setFormStage } from '../formActions/actions'
+import Button from '@mui/material/Button'
+import Typography from '@mui/material/Typography'
 
 export const Result = () => {
   const {
