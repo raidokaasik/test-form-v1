@@ -54,10 +54,6 @@ const GeneralEducationSection = () => {
       <Typography variant="subtitle2" mb={'10px'}>
         Viimane üldhariduskool, õppimine kutse- või kõrgharidusõppeasutuses
       </Typography>
-      {/* <SmallButton
-        onClick={() => append(generalEducationDefaultValue)}
-        label="Lisa"
-      /> */}
       {fields.map((item: IGeneralEducation, index: number) => {
         return (
           <React.Fragment key={item.id}>
