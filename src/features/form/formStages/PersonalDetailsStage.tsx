@@ -16,9 +16,7 @@ import { PersonalCredentials } from './personalDetailsSections/PersonalCredentia
 import { useStateMachine } from 'little-state-machine'
 import { setPersonalDetails, setFormStage } from '../formActions/actions'
 import { DriversLicense } from './personalDetailsSections/DriversLicense'
-import { Dayjs } from 'dayjs'
-
-type dateType = Dayjs | null
+import { dateType } from 'src/components/fields/FormDateField/FormDateField'
 
 export type IOrigin = {
   nationality: string

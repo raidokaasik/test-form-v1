@@ -51,7 +51,6 @@ export const RelationsStage = () => {
     },
     mode: 'onBlur',
   })
-  const { getValues } = methods
 
   const onSubmit = (data: any) => {
     console.log('DATA::', data)
@@ -60,7 +59,7 @@ export const RelationsStage = () => {
   }
 
   const handleBackButton = () => {
-    const currentValues = getValues()
+    const currentValues = methods.getValues()
     actions.setRelations(currentValues)
     actions.setFormStage('personalDetails')
     console.log('SET_BACK_BUTTON::', currentValues)
