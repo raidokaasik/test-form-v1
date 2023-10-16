@@ -56,7 +56,7 @@ export const RelationsStage = () => {
   const onSubmit = (data: any) => {
     console.log('DATA::', data)
     actions.setRelations(data)
-    actions.setFormStage('result')
+    actions.setFormStage('education')
   }
 
   const handleBackButton = () => {
