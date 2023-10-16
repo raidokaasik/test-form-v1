@@ -1,6 +1,5 @@
 import Typography from '@mui/material/Typography'
 import { useForm, FormProvider } from 'react-hook-form'
-import { Box } from '@mui/material'
 import { FormStageWrapper } from '../formWrappers/FormStageWrapper'
 import { NextButton } from '../../../components/NextButton'
 import { Nationality } from './personalDetailsSections/Nationality'
@@ -16,6 +15,7 @@ import { useStateMachine } from 'little-state-machine'
 import { setPersonalDetails, setFormStage } from '../formActions/actions'
 import { DriversLicense } from './personalDetailsSections/DriversLicense'
 import { dateType } from 'src/components/fields/FormDateField/FormDateField'
+import Box from '@mui/material/Box'
 
 export type IOrigin = {
   nationality: string
