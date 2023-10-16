@@ -1,34 +1,84 @@
-import FormControl from '@mui/material/FormControl'
-import InputLabel from '@mui/material/InputLabel'
-import { DateField } from './DateField'
-import { Dayjs } from 'dayjs'
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
+import { DatePicker } from '@mui/x-date-pickers/DatePicker'
+import { Controller } from 'react-hook-form'
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 
 interface FormDateFieldProps {
-  value: Dayjs | null
-  handleChange: (value: Dayjs | null) => void
   label: string
   disabled?: boolean
+  helperText: string
+  control: any
+  name: string
 }
 
 export const FormDateField = ({
-  value,
-  handleChange,
+  control,
   label,
-  disabled,
+  name,
+  helperText,
 }: FormDateFieldProps) => {
   return (
-    <FormControl sx={{ mt: '16px' }}>
-      <InputLabel
-        sx={{ transform: 'translate(0px, -16px) scale(0.75)' }}
-        shrink
-      >
-        {label}
-      </InputLabel>
-      <DateField
-        value={value}
-        handleChange={handleChange}
-        disabled={disabled}
-      />
-    </FormControl>
+    <Controller
+      control={control}
+      name={name}
+      rules={{
+        required: helperText,
+      }}
+      render={({ field: { ref, onBlur, name, ...field }, fieldState }) => (
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <DatePicker
+            {...field}
+            inputRef={ref}
+            label={label}
+            format="DD-MM-YYYY"
+            slotProps={{
+              openPickerButton: {
+                color: 'primary',
+              },
+              inputAdornment: {
+                position: 'end',
+              },
+              textField: {
+                variant: 'standard',
+                name: name,
+                onBlur: onBlur,
+                error: Boolean(fieldState.error),
+                helperText: fieldState.error?.message,
+              },
+            }}
+          />
+        </LocalizationProvider>
+      )}
+    />
   )
 }
+//   <FormControl sx={{ mt: '16px' }}>
+//     <InputLabel
+//       sx={{ transform: 'translate(0px, -16px) scale(0.75)' }}
+//       shrink
+//     >
+//       {label}
+//     </InputLabel>
+//     <LocalizationProvider dateAdapter={AdapterDayjs}>
+//       <DatePicker
+//         value={value}
+//         disabled={disabled}
+//         onChange={handleChange}
+//         format="DD-MM-YYYY"
+//         slotProps={{
+//           openPickerButton: {
+//             color: 'primary',
+//           },
+//           inputAdornment: {
+//             position: 'end',
+//           },
+//           textField: {
+//             variant: 'standard',
+//             error: error,
+//             helperText: helperText,
+//           },
+//         }}
+//       />
+//     </LocalizationProvider>
+//   </FormControl>
+// )
