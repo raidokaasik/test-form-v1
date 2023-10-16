@@ -1,27 +1,53 @@
 import Typography from '@mui/material/Typography'
 import { useForm, FormProvider } from 'react-hook-form'
-import { Box } from '@mui/material'
 import { useEffect } from 'react'
-import { FormStageWrapper } from '../formWrappers/FormStageWrapper'
-import { NextButton } from '../../../components/NextButton'
 import { useStateMachine } from 'little-state-machine'
-import { setPersonalDetails, setFormStage } from '../formActions/actions'
+import { setEducation, setFormStage } from '../formActions/actions'
+import { FormStageWrapper } from '../formWrappers/FormStageWrapper'
+import { NextButton } from 'src/components/NextButton'
+import Button from '@mui/material/Button'
+import Box from '@mui/material/Box'
+import {
+  GeneralEducation,
+  IGeneralEducation,
+  generalEducationDefaultValue,
+} from './educationSections/GeneralEducation'
+import {
+  AcademicEducation,
+  IAcademicEducation,
+  academicEducationDefaultValue,
+} from './educationSections/AcademicEducation'
+
+interface IEducationStage {
+  generalEducation: IGeneralEducation[]
+  hasAcademicEducation: boolean
+  academicDegrees: IAcademicEducation[]
+}
 
 export const EducationStage = () => {
   const {
     state: {
-      form: {},
+      form: { education },
     },
     actions,
-  }: any = useStateMachine({ setFormStage, setPersonalDetails })
+  }: any = useStateMachine({ setFormStage, setEducation })
 
-  const methods = useForm({
-    defaultValues: {},
+  const methods = useForm<IEducationStage>({
+    defaultValues: {
+      generalEducation: education?.generalEducation ?? [
+        generalEducationDefaultValue,
+      ],
+      hasAcademicEducation: education?.hasAcademicEducation ?? false,
+      academicDegrees: education?.academicDegrees ?? [
+        academicEducationDefaultValue,
+      ],
+    },
     mode: 'onBlur',
   })
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: IEducationStage) => {
     console.log('DATA::', data)
+    actions.setEducation(data)
     actions.setFormStage('result')
   }
 
@@ -29,9 +55,24 @@ export const EducationStage = () => {
     console.log('MOUNTS STATE::')
   }, [])
 
+  const handleBackButton = () => {
+    const currentValues = methods.getValues()
+    actions.setFormStage('education')
+    console.log('SET_BACK_BUTTON::', currentValues)
+  }
+
   return (
     <FormStageWrapper
       nextButton={<NextButton id="educationData" label="Järgmine" />}
+      backButton={
+        <Button
+          variant={'contained'}
+          color={'secondary'}
+          onClick={handleBackButton}
+        >
+          tagasi
+        </Button>
+      }
     >
       <Box pl={'16px'} pr={'16px'} pt={'16px'}>
         <Typography variant="h5" fontWeight={600}>
@@ -48,7 +89,10 @@ export const EducationStage = () => {
             boxSizing: 'border-box',
             padding: '16px',
           }}
-        ></form>
+        >
+          <GeneralEducation />
+          <AcademicEducation />
+        </form>
       </FormProvider>
     </FormStageWrapper>
   )

@@ -15,7 +15,7 @@ export const Result = () => {
   useEffect(() => {}, [])
 
   const handleBackButton = () => {
-    actions.setFormStage('relations')
+    actions.setFormStage('education')
   }
 
   return (
