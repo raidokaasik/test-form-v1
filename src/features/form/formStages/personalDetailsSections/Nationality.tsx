@@ -7,10 +7,9 @@ import Typography from '@mui/material/Typography'
 import { useFormContext as hookFormContext } from 'react-hook-form'
 import { OnlyTextField } from '../../../../components/fields/OnlyTextField'
 import { IPersonalDetailsStage } from '../PersonalDetailsStage'
-import { setCaptializedValueOptions } from './PersonalCredentials'
-import { DateField } from '../../../../components/fields/FormDateField/DateField'
 import dayjs, { Dayjs } from 'dayjs'
 import { FormDateField } from '../../../../components/fields/FormDateField/FormDateField'
+import { setCaptializedValueOptions } from 'src/utils/helpers'
 
 const defaultOtherFields = {
   nationality: '',
@@ -23,6 +22,7 @@ const NationalitySection = () => {
   const {
     register,
     setValue,
+    control,
     formState: { defaultValues, errors },
   } = hookFormContext<IPersonalDetailsStage>()
   const [otherNationality, setOtherNationality] = useState<boolean>(
@@ -127,16 +127,28 @@ const NationalitySection = () => {
           </Grid>
           <Grid item xs={3}>
             <FormDateField
+              control={control}
+              name={'origin.other.from'}
+              label="Alates"
+              helperText="Sisesta kuupäev"
+            />
+            {/* <FormDateField
               value={fromDate}
               handleChange={(value: Dayjs | null) => {
                 setFromDate(value)
                 setValue('origin.other.from', dayjs(value))
               }}
               label={'Alates'}
-            />
+            /> */}
           </Grid>
           <Grid item xs={3}>
             <FormDateField
+              control={control}
+              name={'origin.other.to'}
+              label="Kuni"
+              helperText="Sisesta kuupäev"
+            />
+            {/* <FormDateField
               value={toDate}
               handleChange={(value: Dayjs | null) => {
                 setToDate(value)
@@ -144,7 +156,7 @@ const NationalitySection = () => {
               }}
               label={'Kuni'}
               disabled={otherNationalityStillValid}
-            />
+            /> */}
           </Grid>
           <Grid item xs={2}>
             <FormControl>

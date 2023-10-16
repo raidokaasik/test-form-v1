@@ -1,16 +1,17 @@
 import React from 'react'
 // import { ReactComponent as Add } from 'public/icons/add-square-svgrepo-com.svg?url'
 import Grid from '@mui/material/Grid'
-import IconButton from '@mui/material/IconButton'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 import {
   useFormContext as hookFormContext,
   useFieldArray,
 } from 'react-hook-form'
+import { SmallButton } from 'src/components/buttons/SmallButton'
+import { IPersonalDetailsStage } from '../PersonalDetailsStage'
 
 const CommunicationsSection = () => {
-  const { register } = hookFormContext()
+  const { register } = hookFormContext<IPersonalDetailsStage>()
 
   const { fields, append, remove } = useFieldArray({
     name: 'communications',
@@ -32,35 +33,36 @@ const CommunicationsSection = () => {
               <TextField
                 fullWidth
                 variant="standard"
-                label={'Sidevahend'}
-                {...register(`communications.${index}.type` as const)}
+                label={'Tüüp'}
+                {...register(`communications.${index}.commType` as const)}
               />
             </Grid>
-            <Grid item xs={7}>
+            <Grid item xs={6}>
               <TextField
                 fullWidth
                 variant="standard"
-                label={'Väärtus'}
-                {...register(`communications.${index}.value` as const)}
+                label={'Sidevahend'}
+                {...register(`communications.${index}.commValue` as const)}
               />
             </Grid>
-            <Grid item xs={1}>
+            <Grid
+              item
+              xs={2}
+              sx={{
+                alignItems: 'center',
+                justifyContent: 'center',
+                display: 'flex',
+              }}
+            >
               {index > 0 ? (
-                <IconButton
-                  onClick={() => {
-                    remove(index)
-                  }}
-                >
-                  x
-                </IconButton>
+                <SmallButton onClick={() => remove(index)} label="X" />
               ) : (
-                <IconButton
+                <SmallButton
                   onClick={() => {
-                    append({ type: '', value: '' })
+                    append({ commType: '', commValue: '' })
                   }}
-                >
-                  +
-                </IconButton>
+                  label="Lisa"
+                />
               )}
             </Grid>
           </Grid>

@@ -10,13 +10,23 @@ import {
   useFormContext as hookFormContext,
   useFieldArray,
 } from 'react-hook-form'
+import { OnlyTextField } from 'src/components/fields/OnlyTextField'
+import { SmallButton } from 'src/components/buttons/SmallButton'
+import { setCaptializedValueOptions } from 'src/utils/helpers'
+import { IPersonalDetailsStage } from '../PersonalDetailsStage'
+import { FormDateField } from 'src/components/fields/FormDateField/FormDateField'
 
 const PreviouslyUsedNamesSection = () => {
-  const { register } = hookFormContext()
+  const {
+    register,
+    control,
+    formState: { errors },
+  } = hookFormContext<IPersonalDetailsStage>()
   const [namesUsedBefore, setNamesUsedBefore] = React.useState<boolean>(false)
 
   const { fields, append, remove } = useFieldArray({
-    name: 'previouslyUsedNames',
+    name: 'previouslyUsedNames.names',
+    rules: { required: true },
   })
 
   return (
@@ -32,8 +42,8 @@ const PreviouslyUsedNamesSection = () => {
             </FormLabel>
             <Checkbox
               checked={namesUsedBefore}
-              onChange={() => {
-                setNamesUsedBefore(!namesUsedBefore)
+              onChange={(_, value: boolean) => {
+                setNamesUsedBefore(value)
               }}
             />
           </FormControl>
@@ -43,47 +53,66 @@ const PreviouslyUsedNamesSection = () => {
         fields.map((item, index) => {
           return (
             <Grid container spacing={2} key={item.id}>
-              <Grid item xs={5}>
-                <TextField
-                  fullWidth
-                  variant="standard"
+              <Grid item xs={4}>
+                <OnlyTextField
+                  register={{
+                    ...register(
+                      `previouslyUsedNames.names.${index}.name` as const,
+                      {
+                        required: 'Sisestage nimi',
+                        ...setCaptializedValueOptions,
+                      }
+                    ),
+                  }}
+                  capitalize
                   label={'Nimi'}
-                  {...register(`previouslyUsedNames.${index}.name` as const)}
+                  error={
+                    errors?.previouslyUsedNames?.names
+                      ? Boolean(errors?.previouslyUsedNames?.names[index]?.name)
+                      : false
+                  }
+                  helperText={
+                    errors?.previouslyUsedNames?.names
+                      ? (errors?.previouslyUsedNames?.names[index]?.name
+                          ?.message as string)
+                      : ''
+                  }
                 />
               </Grid>
               <Grid item xs={3}>
-                <TextField
-                  fullWidth
-                  variant="standard"
-                  label={'Alates'}
-                  {...register(`previouslyUsedNames.${index}.from` as const)}
+                <FormDateField
+                  name={`previouslyUsedNames.names.${index}.from`}
+                  label="Alates"
+                  helperText="Sisesta kuupäev"
+                  control={control}
                 />
               </Grid>
               <Grid item xs={3}>
-                <TextField
-                  fullWidth
-                  variant="standard"
-                  label={'Kuni'}
-                  {...register(`previouslyUsedNames.${index}.to` as const)}
+                <FormDateField
+                  name={`previouslyUsedNames.names.${index}.to`}
+                  label="Kuni"
+                  helperText="Sisesta kuupäev"
+                  control={control}
                 />
               </Grid>
-              <Grid item xs={1}>
+              <Grid
+                item
+                xs={2}
+                sx={{
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  display: 'flex',
+                }}
+              >
                 {index > 0 ? (
-                  <IconButton
-                    onClick={() => {
-                      remove(index)
-                    }}
-                  >
-                    x
-                  </IconButton>
+                  <SmallButton onClick={() => remove(index)} label="X" />
                 ) : (
-                  <IconButton
+                  <SmallButton
                     onClick={() => {
-                      append({ type: '', value: '' })
+                      append({ name: '', from: '', to: '' })
                     }}
-                  >
-                    +
-                  </IconButton>
+                    label="Lisa"
+                  />
                 )}
               </Grid>
             </Grid>
