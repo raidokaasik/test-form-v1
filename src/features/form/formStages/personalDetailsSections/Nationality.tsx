@@ -5,11 +5,10 @@ import FormLabel from '@mui/material/FormLabel'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import { useFormContext as hookFormContext } from 'react-hook-form'
-import { OnlyTextField } from '../../../../components/fields/OnlyTextField'
 import { IPersonalDetailsStage } from '../PersonalDetailsStage'
-import dayjs, { Dayjs } from 'dayjs'
-import { FormDateField } from '../../../../components/fields/FormDateField/FormDateField'
 import { setCaptializedValueOptions } from 'src/utils/helpers'
+import { OnlyTextField } from 'src/components/fields/OnlyTextField'
+import { FormDateField } from 'src/components/fields/FormDateField/FormDateField'
 
 const defaultOtherFields = {
   nationality: '',
@@ -22,6 +21,7 @@ const NationalitySection = () => {
   const {
     register,
     setValue,
+    clearErrors,
     control,
     formState: { defaultValues, errors },
   } = hookFormContext<IPersonalDetailsStage>()
@@ -30,16 +30,6 @@ const NationalitySection = () => {
   )
   const [otherNationalityStillValid, setOtherNationalityStillValid] =
     useState<boolean>(defaultValues?.origin?.other?.present ?? false)
-  const [fromDate, setFromDate] = useState<Dayjs | null>(
-    defaultValues?.origin?.other?.from
-      ? (defaultValues?.origin?.other?.from as Dayjs)
-      : null
-  )
-  const [toDate, setToDate] = useState<Dayjs | null>(
-    defaultValues?.origin?.other?.from
-      ? (defaultValues?.origin?.other?.to as Dayjs)
-      : null
-  )
 
   const handleOtherNationalityCheckbox = (
     _: React.ChangeEvent<HTMLInputElement>,
@@ -47,6 +37,7 @@ const NationalitySection = () => {
   ) => {
     if (!checked) {
       setValue('origin.other', defaultOtherFields)
+      clearErrors('origin.other')
     }
     setOtherNationality(!otherNationality)
     setValue('origin.hasOtherNationalityInfo', !otherNationality)
@@ -57,8 +48,8 @@ const NationalitySection = () => {
     checked: boolean
   ) => {
     if (checked) {
+      clearErrors('origin.other.to')
       setValue('origin.other.to', null)
-      setToDate(null)
     }
     setOtherNationalityStillValid(!otherNationalityStillValid)
     setValue('origin.other.present', !otherNationalityStillValid)
@@ -132,31 +123,15 @@ const NationalitySection = () => {
               label="Alates"
               helperText="Sisesta kuupäev"
             />
-            {/* <FormDateField
-              value={fromDate}
-              handleChange={(value: Dayjs | null) => {
-                setFromDate(value)
-                setValue('origin.other.from', dayjs(value))
-              }}
-              label={'Alates'}
-            /> */}
           </Grid>
           <Grid item xs={3}>
             <FormDateField
+              disabled={otherNationalityStillValid}
               control={control}
               name={'origin.other.to'}
               label="Kuni"
               helperText="Sisesta kuupäev"
             />
-            {/* <FormDateField
-              value={toDate}
-              handleChange={(value: Dayjs | null) => {
-                setToDate(value)
-                setValue('origin.other.to', dayjs(value))
-              }}
-              label={'Kuni'}
-              disabled={otherNationalityStillValid}
-            /> */}
           </Grid>
           <Grid item xs={2}>
             <FormControl>

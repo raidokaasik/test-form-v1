@@ -3,7 +3,6 @@ import React from 'react'
 import { useFormContext as hookFormContext } from 'react-hook-form'
 import { OnlyTextField } from 'src/components/fields/OnlyTextField'
 import { PersonalIDField } from 'src/components/fields/PersonalIdMaskField'
-
 import { setCaptializedValueOptions } from 'src/utils/helpers'
 
 const PersonalCredentialsSection = () => {
