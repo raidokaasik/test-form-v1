@@ -149,6 +149,7 @@ const FamilyMembersSection = () => {
                 </Grid>
                 <Grid item xs={3}>
                   <OnlyTextField
+                    allownumbers
                     capitalize
                     name={`familyMembers.${index}.address.houseNr` as const}
                     control={control}

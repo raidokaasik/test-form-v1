@@ -30,7 +30,7 @@ createStore(
       previousExperience: null,
       additionalInformation: null,
     },
-    formStage: 'additionalInformation',
+    formStage: 'personalDetails',
   },
   {
     persist: 'none',
