@@ -10,6 +10,7 @@ createStore(
         familyMembers: null,
         closeFriends: null,
       },
+      education: null,
     },
     formStage: 'personalDetails',
   } as any,
