@@ -4,25 +4,48 @@ import Typography from '@mui/material/Typography'
 import { PageWrapper } from '../components/PageWrapper'
 import { FormDialog } from '../features/form/formDialog/FormDialog'
 import { RenderFormStage } from '../features/form/RenderFormStage'
+import Box from '@mui/material/Box'
+import { FormHeader } from '../features/form/formHeader/FormHeader'
+import { PersonalDataForm } from '../features/form/Form'
 
 export const Hiring = () => {
   const [openForm, setOpenForm] = useState<boolean>(false)
 
   return (
     <PageWrapper headerText={'Tule meile tööle'}>
-      <Button
-        variant="contained"
-        color="secondary"
-        sx={{ fontWeight: 500 }}
-        onClick={() => setOpenForm(!openForm)}
+      <Box
+        width={'100%'}
+        display={'flex'}
+        flexDirection={{ xs: 'column', sm: 'row' }}
+        gap={'10px'}
       >
-        ISIKUANKEET
-      </Button>
-      <Typography marginTop={'16px'} marginBottom={'16px'} variant="body1">
-        Kui Sa oled julge, teotahteline ja õpihimuline inimene ning soovid muuta
-        keskkonda turvalisemaks, siis täida meie ankeet, mille leiad kodulehelt,
-        ja kandideeri.
-      </Typography>
+        <Box width={'60%'}>
+          <Typography marginTop={'16px'} marginBottom={'16px'} variant="body1">
+            Kui Sa oled julge, teotahteline ja õpihimuline inimene ning soovid
+            muuta keskkonda turvalisemaks, siis täida meie ankeet, mille leiad
+            kodulehelt, ja kandideeri.
+          </Typography>
+        </Box>
+        <Box width={'40%'}>
+          <FormHeader />
+          <Box
+            width={'100%'}
+            display={'flex'}
+            justifyContent={'center'}
+            gap={'10px'}
+          >
+            <Typography variant="body1">Alusta täitmist:</Typography>
+            <Button
+              variant="contained"
+              color="secondary"
+              sx={{ fontWeight: 500, height: '34px' }}
+              onClick={() => setOpenForm(!openForm)}
+            >
+              ISIKUANKEET
+            </Button>
+          </Box>
+        </Box>
+      </Box>
       <Typography fontSize={'14px'} fontWeight={700}>
         Tingimused:
       </Typography>
@@ -49,7 +72,7 @@ export const Hiring = () => {
       <FormDialog
         openForm={openForm}
         onCloseHandler={() => setOpenForm(false)}
-        dialogContent={<RenderFormStage />}
+        dialogContent={<PersonalDataForm />}
       />
     </PageWrapper>
   )
