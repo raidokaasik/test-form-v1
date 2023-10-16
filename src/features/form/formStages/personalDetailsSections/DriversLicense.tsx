@@ -7,23 +7,21 @@ import Typography from '@mui/material/Typography'
 import React from 'react'
 import { useState } from 'react'
 import { useFormContext as hookFormContext } from 'react-hook-form'
-import { DateField } from '../../../../components/fields/FormDateField/DateField'
-import dayjs, { Dayjs } from 'dayjs'
-import InputLabel from '@mui/material/InputLabel'
-import { FormDateField } from '../../../../components/fields/FormDateField/FormDateField'
+
 import { IPersonalDetailsStage } from '../PersonalDetailsStage'
+import { FormDateField } from 'src/components/fields/FormDateField/FormDateField'
 
 const DriversLicenseSection = () => {
   const {
     register,
     setValue,
+    clearErrors,
+    control,
     formState: { errors, defaultValues },
   } = hookFormContext<IPersonalDetailsStage>()
+
   const [driversLicense, setDriversLicense] = useState<boolean>(
     defaultValues?.driversLicense?.hasLicense ?? false
-  )
-  const [fromDate, setFromDate] = useState<Dayjs | null>(
-    (defaultValues?.driversLicense?.date as Dayjs) ?? null
   )
 
   const handleHasLicenseCheckbox = (
@@ -31,6 +29,7 @@ const DriversLicenseSection = () => {
     checked: boolean
   ) => {
     if (!checked) {
+      clearErrors('driversLicense')
       setValue('driversLicense.categories', '')
       setValue('driversLicense.date', null)
     }
@@ -73,12 +72,10 @@ const DriversLicenseSection = () => {
           </Grid>
           <Grid item xs={6}>
             <FormDateField
-              value={fromDate}
-              handleChange={(value: Dayjs | null) => {
-                setFromDate(value)
-                setValue('driversLicense.date', dayjs(value))
-              }}
-              label={'Alates'}
+              name="driversLicense.date"
+              control={control}
+              label="Alates"
+              helperText="Sisesta kuupäev"
             />
           </Grid>
         </Grid>

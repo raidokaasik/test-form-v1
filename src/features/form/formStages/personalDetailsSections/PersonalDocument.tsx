@@ -3,9 +3,9 @@ import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 import React from 'react'
 import { useFormContext as hookFormContext } from 'react-hook-form'
-import { OnlyTextField } from '../../../../components/fields/OnlyTextField'
 import { IPersonalDetailsStage } from '../PersonalDetailsStage'
-import { FormDateField } from '../../../../components/fields/FormDateField/FormDateField'
+import { OnlyTextField } from 'src/components/fields/OnlyTextField'
+import { FormDateField } from 'src/components/fields/FormDateField/FormDateField'
 
 const DocumentSection = () => {
   const {
@@ -65,7 +65,11 @@ const DocumentSection = () => {
             fullWidth
             variant="standard"
             label={'Väljaandja'}
-            {...register('document.authority')}
+            {...register('document.authority', {
+              required: 'Sisesta väljaandja',
+            })}
+            error={Boolean(errors?.document?.authority)}
+            helperText={errors?.document?.authority?.message as string}
           />
         </Grid>
       </Grid>

@@ -17,7 +17,7 @@ const AddressSection = () => {
     <>
       <Typography variant="body2">Tegelik elukoht</Typography>
       <Grid container spacing={2}>
-        <Grid item xs={4}>
+        <Grid item xs={6}>
           <OnlyTextField
             register={{
               ...register('address.county', {
@@ -31,32 +31,18 @@ const AddressSection = () => {
             error={Boolean(errors?.address?.county)}
           />
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={6}>
           <OnlyTextField
             register={{
               ...register('address.city', {
-                required: 'Sisesta linn',
+                required: 'Sisesta linn või vald',
                 ...setCaptializedValueOptions,
               }),
             }}
             capitalize
-            label={'Linn'}
+            label={'Linn/Vald'}
             helperText={errors?.address?.city?.message as string}
             error={Boolean(errors?.address?.city)}
-          />
-        </Grid>
-        <Grid item xs={4}>
-          <OnlyTextField
-            register={{
-              ...register('address.settlement', {
-                required: 'Sisesta vald',
-                ...setCaptializedValueOptions,
-              }),
-            }}
-            capitalize
-            label={'Vald'}
-            helperText={errors?.address?.settlement?.message as string}
-            error={Boolean(errors?.address?.settlement)}
           />
         </Grid>
         <Grid item xs={4}>

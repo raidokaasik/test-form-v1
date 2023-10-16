@@ -16,13 +16,14 @@ export const FormDateField = ({
   label,
   name,
   helperText,
+  disabled = false,
 }: FormDateFieldProps) => {
   return (
     <Controller
       control={control}
       name={name}
       rules={{
-        required: helperText,
+        required: disabled ? false : helperText,
       }}
       render={({ field: { ref, onBlur, name, ...field }, fieldState }) => (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -30,6 +31,7 @@ export const FormDateField = ({
             {...field}
             inputRef={ref}
             label={label}
+            disabled={disabled}
             format="DD-MM-YYYY"
             slotProps={{
               openPickerButton: {
@@ -41,6 +43,7 @@ export const FormDateField = ({
               textField: {
                 variant: 'standard',
                 name: name,
+                disabled: disabled,
                 onBlur: onBlur,
                 error: Boolean(fieldState.error),
                 helperText: fieldState.error?.message,

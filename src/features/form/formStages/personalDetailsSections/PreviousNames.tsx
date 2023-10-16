@@ -3,8 +3,6 @@ import Checkbox from '@mui/material/Checkbox'
 import FormControl from '@mui/material/FormControl'
 import FormLabel from '@mui/material/FormLabel'
 import Grid from '@mui/material/Grid'
-import IconButton from '@mui/material/IconButton'
-import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 import {
   useFormContext as hookFormContext,
@@ -20,14 +18,30 @@ const PreviouslyUsedNamesSection = () => {
   const {
     register,
     control,
-    formState: { errors },
+    setValue,
+    clearErrors,
+    formState: { errors, defaultValues },
   } = hookFormContext<IPersonalDetailsStage>()
-  const [namesUsedBefore, setNamesUsedBefore] = React.useState<boolean>(false)
+
+  const [namesUsedBefore, setNamesUsedBefore] = React.useState<boolean>(
+    defaultValues?.previouslyUsedNames?.hasPerviouslyUsedNames ?? false
+  )
 
   const { fields, append, remove } = useFieldArray({
     name: 'previouslyUsedNames.names',
     rules: { required: true },
   })
+
+  const handleOtherNamesCheckbox = (
+    _: React.ChangeEvent<HTMLInputElement>,
+    value: boolean
+  ) => {
+    if (!value) {
+      clearErrors('previouslyUsedNames')
+    }
+    setNamesUsedBefore(value)
+    setValue('previouslyUsedNames.hasPerviouslyUsedNames', value)
+  }
 
   return (
     <>
@@ -42,9 +56,7 @@ const PreviouslyUsedNamesSection = () => {
             </FormLabel>
             <Checkbox
               checked={namesUsedBefore}
-              onChange={(_, value: boolean) => {
-                setNamesUsedBefore(value)
-              }}
+              onChange={handleOtherNamesCheckbox}
             />
           </FormControl>
         </Grid>
