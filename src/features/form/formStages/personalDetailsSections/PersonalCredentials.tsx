@@ -1,13 +1,10 @@
 import Grid from '@mui/material/Grid'
 import React from 'react'
 import { useFormContext as hookFormContext } from 'react-hook-form'
-import { capitalizeFirstLetter } from '../../../../utils/helpers'
-import { PersonalIDField } from '../../../../components/fields/PersonalIdMaskField'
-import { OnlyTextField } from '../../../../components/fields/OnlyTextField'
+import { OnlyTextField } from 'src/components/fields/OnlyTextField'
+import { PersonalIDField } from 'src/components/fields/PersonalIdMaskField'
 
-export const setCaptializedValueOptions = {
-  setValueAs: (value: string) => capitalizeFirstLetter(value),
-}
+import { setCaptializedValueOptions } from 'src/utils/helpers'
 
 const PersonalCredentialsSection = () => {
   const {

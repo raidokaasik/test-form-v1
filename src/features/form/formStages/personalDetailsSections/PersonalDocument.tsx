@@ -2,11 +2,10 @@ import Grid from '@mui/material/Grid'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 import React from 'react'
-import { Controller, useFormContext as hookFormContext } from 'react-hook-form'
+import { useFormContext as hookFormContext } from 'react-hook-form'
 import { OnlyTextField } from '../../../../components/fields/OnlyTextField'
 import { IPersonalDetailsStage } from '../PersonalDetailsStage'
 import { FormDateField } from '../../../../components/fields/FormDateField/FormDateField'
-import { Dayjs } from 'dayjs'
 
 const DocumentSection = () => {
   const {
@@ -14,6 +13,7 @@ const DocumentSection = () => {
     control,
     formState: { errors },
   } = hookFormContext<IPersonalDetailsStage>()
+
   return (
     <>
       <Typography variant="body2">
@@ -45,35 +45,19 @@ const DocumentSection = () => {
           />
         </Grid>
         <Grid item xs={4}>
-          <Controller
-            name="document.dateOfIssue"
+          <FormDateField
             control={control}
-            render={({ field: { value, onChange } }) => {
-              return (
-                <FormDateField
-                  value={value}
-                  handleChange={(value: Dayjs | null) => {
-                    onChange(value)
-                  }}
-                  label="Välja antud"
-                />
-              )
-            }}
+            name={'document.dateOfIssue'}
+            label="Välja antud"
+            helperText="Sisesta kuupäev"
           />
-
-          {/* <TextField
-            fullWidth
-            variant="standard"
-            label={'Välja antud'}
-            {...register('document.dateOfIssue')}
-          /> */}
         </Grid>
         <Grid item xs={4}>
-          <TextField
-            fullWidth
-            variant="standard"
-            label={'Kehtiv kuni'}
-            {...register('document.dateOfExpiry')}
+          <FormDateField
+            control={control}
+            name={'document.dateOfExpiry'}
+            label="Kehtiv kuni"
+            helperText="Sisesta kuupäev"
           />
         </Grid>
         <Grid item xs={4}>

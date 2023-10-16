@@ -7,12 +7,12 @@ import { NextButton } from '../../../components/NextButton'
 import { Nationality } from './personalDetailsSections/Nationality'
 import { Communications } from './personalDetailsSections/Communications'
 import { PreviousNames } from './personalDetailsSections/PreviousNames'
+import { Address } from './personalDetailsSections/Address'
 import { PersonalDocument } from './personalDetailsSections/PersonalDocument'
 import { PersonalCredentials } from './personalDetailsSections/PersonalCredentials'
 import { useStateMachine } from 'little-state-machine'
 import { setPersonalDetails, setFormStage } from '../formActions/actions'
 import { DriversLicense } from './personalDetailsSections/DriversLicense'
-import { Address } from './personalDetailsSections/Address'
 import { Dayjs } from 'dayjs'
 
 type dateType = Dayjs | null
@@ -41,7 +41,7 @@ export interface IPersonalDetailsStage {
   }
   previouslyUsedNames: {
     hasPerviouslyUsedNames: boolean
-    names: Array<Record<string, string>>
+    names: Array<Record<string, string>> | []
   }
   communications: Array<Record<string, string>>
   document: {
@@ -150,25 +150,25 @@ const getDefaultValues = (personalDetails: IPersonalDetailsStage) => {
     },
     communications: personalDetails?.communications ?? [
       {
-        type: '',
-        value: '',
+        commType: '',
+        commValue: '',
       },
     ],
     document: {
-      docType: '',
-      id: '',
-      dateOfIssue: '',
-      dateOfExpiry: '',
-      authority: '',
+      docType: personalDetails?.document.docType ?? '',
+      id: personalDetails?.document.id ?? '',
+      dateOfIssue: personalDetails?.document.dateOfIssue ?? null,
+      dateOfExpiry: personalDetails?.document.dateOfExpiry ?? null,
+      authority: personalDetails?.document.authority ?? '',
     },
     address: {
-      city: '',
-      county: '',
-      settlement: '',
-      street: '',
-      houseNumber: '',
-      appartmentNr: '',
-      zip: '',
+      city: personalDetails?.address.city ?? '',
+      county: personalDetails?.address.county ?? '',
+      settlement: personalDetails?.address.settlement ?? '',
+      street: personalDetails?.address.street ?? '',
+      houseNumber: personalDetails?.address.houseNumber ?? '',
+      appartmentNr: personalDetails?.address.appartmentNr ?? '',
+      zip: personalDetails?.address.zip ?? '',
     },
   }
 }
