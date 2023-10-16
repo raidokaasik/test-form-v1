@@ -1,5 +1,8 @@
+import { GlobalState } from 'little-state-machine'
+import { IEducation } from '../formStages/EducationStage'
 import { IPersonalDetailsStage } from '../formStages/PersonalDetailsStage'
-import { IFamilyMember } from '../formStages/relationsSections/FamilyMembers'
+import { IPerviousExperience } from '../formStages/PreviousExperience'
+import { IRelations } from '../formStages/RelationsStage'
 
 export const setFormStage = (state: any, payload: string) => {
   return {
@@ -9,11 +12,9 @@ export const setFormStage = (state: any, payload: string) => {
 }
 
 export const setPersonalDetails = (
-  state: any,
+  state: GlobalState,
   payload: IPersonalDetailsStage
-) => {
-  console.log('SET_RELATIONS_PAYLOAD::', payload)
-
+): GlobalState => {
   return {
     ...state,
     form: {
@@ -23,8 +24,10 @@ export const setPersonalDetails = (
   }
 }
 
-export const setRelations = (state: any, payload: IFamilyMember[]) => {
-  console.log('SET_RELATIONS_PAYLOAD::', payload)
+export const setRelations = (
+  state: GlobalState,
+  payload: IRelations
+): GlobalState => {
   return {
     ...state,
     form: {
@@ -34,13 +37,28 @@ export const setRelations = (state: any, payload: IFamilyMember[]) => {
   }
 }
 
-export const setEducation = (state: any, payload: any) => {
-  console.log('SET_RELATIONS_PAYLOAD::', payload)
+export const setEducation = (
+  state: GlobalState,
+  payload: IEducation
+): GlobalState => {
   return {
     ...state,
     form: {
       ...state.form,
       education: payload,
+    },
+  }
+}
+
+export const setPreviousExperience = (
+  state: GlobalState,
+  payload: IPerviousExperience
+): GlobalState => {
+  return {
+    ...state,
+    form: {
+      ...state.form,
+      previousExperience: payload,
     },
   }
 }
