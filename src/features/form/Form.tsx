@@ -27,7 +27,7 @@ createStore(
       education: null,
       previousExperience: null,
     },
-    formStage: 'personalDetails',
+    formStage: 'previousExperience',
   },
   {
     persist: 'none',

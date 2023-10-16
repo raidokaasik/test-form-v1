@@ -9,13 +9,13 @@ export const Result = () => {
   const {
     actions,
     state: {
-      form: { personalDetails, relations, education },
+      form: { personalDetails, relations, education, previousExperience },
     },
-  }: any = useStateMachine({ setFormStage })
+  } = useStateMachine({ setFormStage })
   useEffect(() => {}, [])
 
   const handleBackButton = () => {
-    actions.setFormStage('education')
+    actions.setFormStage('previousExperience')
   }
 
   return (
@@ -38,6 +38,8 @@ export const Result = () => {
         <pre>{JSON.stringify(relations, null, 2)}</pre>
         <Typography variant="body2">Haridus</Typography>
         <pre>{JSON.stringify(education, null, 2)}</pre>
+        <Typography variant="body2">Varasem kogemus</Typography>
+        <pre>{JSON.stringify(previousExperience, null, 2)}</pre>
       </Box>
     </FormStageWrapper>
   )
