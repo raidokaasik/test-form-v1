@@ -5,14 +5,15 @@ import {
 import React from 'react'
 import Typography from '@mui/material/Typography'
 import Grid from '@mui/material/Grid'
-import Divider from '@mui/material/Divider'
 import Box from '@mui/material/Box'
-import { SmallButton } from 'src/components/buttons/SmallButton'
 import { OnlyTextField } from 'src/components/fields/OnlyTextField'
 import {
   FormDateField,
   dateType,
 } from 'src/components/fields/FormDateField/FormDateField'
+import { RemoveIcon } from 'src/components/icons/RemoveIcon'
+import { AddIcon } from 'src/components/icons/AddIcon'
+import { DashedDivider } from 'src/components/DashedDivider'
 
 export const generalEducationDefaultValue: IGeneralEducation = {
   from: null,
@@ -50,22 +51,18 @@ const GeneralEducationSection = () => {
 
   return (
     <>
-      <Typography variant="body2">Üldharidus</Typography>
-      <Typography variant="subtitle2" mb={'10px'}>
+      <Typography variant="h6">Üldharidus</Typography>
+      <Typography variant="body2" mt={'5px'} mb={'10px'}>
         Viimane üldhariduskool, õppimine kutse- või kõrgharidusõppeasutuses
       </Typography>
       {fields.map((item: IGeneralEducation, index: number) => {
         return (
           <React.Fragment key={item.id}>
-            <Divider sx={{ mt: '16px', mb: '16px', borderStyle: 'dashed' }} />
             <Box width={'100%'} display={'flex'} justifyContent={'flex-end'}>
               {index > 0 ? (
-                <SmallButton onClick={() => remove(index)} label="X" />
+                <RemoveIcon onClick={() => remove(index)} />
               ) : (
-                <SmallButton
-                  onClick={() => append(generalEducationDefaultValue)}
-                  label="Lisa"
-                />
+                <AddIcon onClick={() => append(generalEducationDefaultValue)} />
               )}
             </Box>
             <Grid container spacing={2} mb={'28px'}>
@@ -121,6 +118,7 @@ const GeneralEducationSection = () => {
                 />
               </Grid>
             </Grid>
+            <DashedDivider />
           </React.Fragment>
         )
       })}

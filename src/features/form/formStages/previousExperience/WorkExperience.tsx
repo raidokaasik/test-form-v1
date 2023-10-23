@@ -3,7 +3,6 @@ import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import React from 'react'
 import { DashedDivider } from 'src/components/DashedDivider'
-import { SmallButton } from 'src/components/buttons/SmallButton'
 import {
   FormDateField,
   dateType,
@@ -13,6 +12,8 @@ import {
   useFormContext as hookFormContext,
   useFieldArray,
 } from 'react-hook-form'
+import { RemoveIcon } from 'src/components/icons/RemoveIcon'
+import { AddIcon } from 'src/components/icons/AddIcon'
 
 export const workExperienceDefaultValue: IWorkExperience = {
   id: '',
@@ -48,19 +49,15 @@ const WorkExperienceSection = () => {
   })
   return (
     <>
-      <Typography variant="body2">Varasem töötamine</Typography>
+      <Typography variant="h6">Varasem töötamine</Typography>
       {fields.map((item: IWorkExperience, index: number) => {
         return (
           <React.Fragment key={item.id}>
-            <DashedDivider />
             <Box width={'100%'} display={'flex'} justifyContent={'flex-end'}>
               {index > 0 ? (
-                <SmallButton onClick={() => remove(index)} label="X" />
+                <RemoveIcon onClick={() => remove(index)} />
               ) : (
-                <SmallButton
-                  onClick={() => append(workExperienceDefaultValue)}
-                  label="Lisa"
-                />
+                <AddIcon onClick={() => append(workExperienceDefaultValue)} />
               )}
             </Box>
             <Grid container spacing={2} mb={'28px'}>
@@ -108,6 +105,7 @@ const WorkExperienceSection = () => {
                 />
               </Grid>
             </Grid>
+            <DashedDivider />
           </React.Fragment>
         )
       })}

@@ -5,17 +5,16 @@ import {
 import React, { useState } from 'react'
 import Typography from '@mui/material/Typography'
 import Grid from '@mui/material/Grid'
-import Divider from '@mui/material/Divider'
 import Box from '@mui/material/Box'
-import { SmallButton } from 'src/components/buttons/SmallButton'
 import { OnlyTextField } from 'src/components/fields/OnlyTextField'
 import {
   FormDateField,
   dateType,
 } from 'src/components/fields/FormDateField/FormDateField'
-import FormControl from '@mui/material/FormControl'
-import FormLabel from '@mui/material/FormLabel'
-import Checkbox from '@mui/material/Checkbox'
+import { RemoveIcon } from 'src/components/icons/RemoveIcon'
+import { AddIcon } from 'src/components/icons/AddIcon'
+import { DashedDivider } from 'src/components/DashedDivider'
+import { CustomToggleButton } from 'src/components/toggle/CustomToggleButton'
 
 export const armyExperienceDefaultValue: IArmyExperience = {
   unitName: '',
@@ -61,37 +60,28 @@ const ArmyExperienceSection = () => {
     name: 'armyExperience',
   })
 
-  const handleHasArmyExperienceDegreeCheckbox = (
-    _: React.ChangeEvent<HTMLInputElement>,
-    value: boolean
-  ) => {
+  const handleHasArmyExperienceDegreeCheckbox = (value: boolean) => {
     if (!value) {
       clearErrors('armyExperience')
       setValue('armyExperience', [armyExperienceDefaultValue])
     }
-    setValue('hasArmyExperience', value)
     setHasArmyExperience(value)
   }
 
   return (
     <>
-      <Typography variant="body2">
+      <Typography variant="h6">
         Kaitseväeteenistus ja sõjaväeline väljaõpe, sealhulgas välisriigis
       </Typography>
       <Grid container spacing={2}>
-        <Grid item xs={4}>
-          <FormControl sx={{ flexDirection: 'row', height: '42px' }}>
-            <FormLabel
-              sx={{ display: 'flex', alignItems: 'center', width: '320px' }}
-            >
-              Osalenud kaitseväes või omab sõjaväelist õpet
-            </FormLabel>
-            <Checkbox
-              disableRipple
-              checked={hasArmyExperience}
-              onChange={handleHasArmyExperienceDegreeCheckbox}
-            />
-          </FormControl>
+        <Grid item xs={12} mt="16px">
+          <CustomToggleButton
+            name={'hasArmyExperience'}
+            label="Osalenud kaitseväes või omab sõjaväelist õpet"
+            control={control}
+            onOtherChange={handleHasArmyExperienceDegreeCheckbox}
+            alignment="row"
+          />
         </Grid>
       </Grid>
 
@@ -99,15 +89,11 @@ const ArmyExperienceSection = () => {
         fields.map((item: IArmyExperience, index: number) => {
           return (
             <React.Fragment key={item.id}>
-              <Divider sx={{ mt: '16px', mb: '16px', borderStyle: 'dashed' }} />
               <Box width={'100%'} display={'flex'} justifyContent={'flex-end'}>
                 {index > 0 ? (
-                  <SmallButton onClick={() => remove(index)} label="X" />
+                  <RemoveIcon onClick={() => remove(index)} />
                 ) : (
-                  <SmallButton
-                    onClick={() => append(armyExperienceDefaultValue)}
-                    label="Lisa"
-                  />
+                  <AddIcon onClick={() => append(armyExperienceDefaultValue)} />
                 )}
               </Box>
               <Grid container spacing={2} mb={'28px'}>
@@ -173,6 +159,7 @@ const ArmyExperienceSection = () => {
                   />
                 </Grid>
               </Grid>
+              <DashedDivider />
             </React.Fragment>
           )
         })}

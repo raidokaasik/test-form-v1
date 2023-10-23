@@ -5,17 +5,15 @@ import {
 import React, { useState } from 'react'
 import Typography from '@mui/material/Typography'
 import Grid from '@mui/material/Grid'
-import Divider from '@mui/material/Divider'
-import Box from '@mui/material/Box'
-import { SmallButton } from 'src/components/buttons/SmallButton'
 import { OnlyTextField } from 'src/components/fields/OnlyTextField'
 import {
   FormDateField,
   dateType,
 } from 'src/components/fields/FormDateField/FormDateField'
-import FormControl from '@mui/material/FormControl'
-import FormLabel from '@mui/material/FormLabel'
-import Checkbox from '@mui/material/Checkbox'
+import { CustomToggleButton } from 'src/components/toggle/CustomToggleButton'
+import { RemoveIcon } from 'src/components/icons/RemoveIcon'
+import { AddIcon } from 'src/components/icons/AddIcon'
+import { DashedDivider } from 'src/components/DashedDivider'
 
 export const academicEducationDefaultValue: IAcademicEducation = {
   degree: '',
@@ -53,38 +51,29 @@ const AcademicEducationSection = () => {
     name: 'academicDegrees',
   })
 
-  const handleHasAcademicDegreeCheckbox = (
-    _: React.ChangeEvent<HTMLInputElement>,
-    value: boolean
-  ) => {
+  const handleHasAcademicDegreeCheckbox = (value: boolean) => {
     if (!value) {
       clearErrors('academicDegrees')
       setValue('academicDegrees', [academicEducationDefaultValue])
     }
-    setValue('hasAcademicEducation', value)
     setHasAcademicEducation(value)
   }
 
   return (
     <>
-      <Typography variant="body2">Akadeemilised ja teaduskraadid</Typography>
-      <Typography variant="subtitle2" mb={'10px'}>
+      <Typography variant="h6">Akadeemilised ja teaduskraadid</Typography>
+      <Typography variant="body2" mt={'5px'} mb={'10px'}>
         Ka välisriigis antud
       </Typography>
       <Grid container spacing={2}>
-        <Grid item xs={4}>
-          <FormControl sx={{ flexDirection: 'row', height: '42px' }}>
-            <FormLabel
-              sx={{ display: 'flex', alignItems: 'center', width: '180px' }}
-            >
-              Omab akadeemilist kraadi
-            </FormLabel>
-            <Checkbox
-              disableRipple
-              checked={hasAcademicEducation}
-              onChange={handleHasAcademicDegreeCheckbox}
-            />
-          </FormControl>
+        <Grid item xs={12}>
+          <CustomToggleButton
+            name="hasAcademicEducation"
+            control={control}
+            label="Omab akadeemilist kraadi"
+            alignment="row"
+            onOtherChange={handleHasAcademicDegreeCheckbox}
+          />
         </Grid>
       </Grid>
 
@@ -92,17 +81,6 @@ const AcademicEducationSection = () => {
         fields.map((item: IAcademicEducation, index: number) => {
           return (
             <React.Fragment key={item.id}>
-              <Divider sx={{ mt: '16px', mb: '16px', borderStyle: 'dashed' }} />
-              <Box width={'100%'} display={'flex'} justifyContent={'flex-end'}>
-                {index > 0 ? (
-                  <SmallButton onClick={() => remove(index)} label="X" />
-                ) : (
-                  <SmallButton
-                    onClick={() => append(academicEducationDefaultValue)}
-                    label="Lisa"
-                  />
-                )}
-              </Box>
               <Grid container spacing={2} mb={'28px'}>
                 <Grid item xs={4}>
                   <OnlyTextField
@@ -122,7 +100,7 @@ const AcademicEducationSection = () => {
                     helperText="Sisestage kraadi andja nimetus"
                   />
                 </Grid>
-                <Grid item xs={4}>
+                <Grid item xs={3}>
                   <FormDateField
                     control={control}
                     name={`academicDegrees.${index}.from` as const}
@@ -130,7 +108,23 @@ const AcademicEducationSection = () => {
                     helperText="Sisestage kuupäev"
                   />
                 </Grid>
+                <Grid
+                  item
+                  xs={1}
+                  display={'flex'}
+                  alignItems={'center'}
+                  justifyContent={'center'}
+                >
+                  {index > 0 ? (
+                    <RemoveIcon onClick={() => remove(index)} />
+                  ) : (
+                    <AddIcon
+                      onClick={() => append(academicEducationDefaultValue)}
+                    />
+                  )}
+                </Grid>
               </Grid>
+              <DashedDivider />
             </React.Fragment>
           )
         })}
