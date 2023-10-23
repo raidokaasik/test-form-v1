@@ -15,7 +15,7 @@ interface CustomToggleButtonProps {
   alignment?: keyof typeof Alignment
   name: string
   control: Control<any, boolean>
-  label: string
+  label?: string
   onOtherChange?: (value: boolean) => void
   sx?: SxProps
 }

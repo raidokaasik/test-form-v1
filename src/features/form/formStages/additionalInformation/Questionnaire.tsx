@@ -3,6 +3,7 @@ import { useFormContext as hookFormContext } from 'react-hook-form'
 import Box from '@mui/material/Box'
 import data from './questions.json'
 import { QuestionnaireElement } from 'src/components/QuestionnaireElement'
+import { DashedDivider } from 'src/components/DashedDivider'
 
 export interface IQuestions {
   belongToAPoliticalParty: boolean
@@ -27,6 +28,7 @@ const QuestionnaireSection = () => {
             />
           )
         })}
+        <DashedDivider />
       </Box>
     </>
   )
