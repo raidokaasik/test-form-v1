@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography'
 export const NavMenu = () => {
   return (
     <NavBox>
-      <Typography color={'#fbd020'} textTransform={'uppercase'}>
+      <Typography color="secondary" textTransform={'uppercase'}>
         NavBar
       </Typography>
     </NavBox>
