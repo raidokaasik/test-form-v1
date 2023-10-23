@@ -1,9 +1,22 @@
-import createTheme from '@mui/material/styles/createTheme'
+import createTheme, { Theme } from '@mui/material/styles/createTheme'
 
-const SECONDARY_MAIN = '#0072CE'
+const SECONDARY_MAIN = '#fbd020'
+const SUCCESS_MAIN = '#2da63b'
+const SUCCESS_DARK = '#31823b'
+const PRIMARY_MAIN = '#203f9e'
 
-export const theme = createTheme({
+export const theme: Theme = createTheme({
   components: {
+    MuiInput: {
+      styleOverrides: {
+        root: {
+          fontWeight: 700,
+          ':after': {
+            borderBottom: `2px solid ${PRIMARY_MAIN}`,
+          },
+        },
+      },
+    },
     MuiToggleButtonGroup: {
       styleOverrides: {
         root: {
@@ -20,16 +33,17 @@ export const theme = createTheme({
           boxSizing: 'border-box',
           fontSize: '12px',
           fontWeight: '700',
-          borderRadius: '15px',
+          borderRadius: '5px',
           height: '24px',
-          width: '46px',
-          color: SECONDARY_MAIN,
-          border: `2px solid ${SECONDARY_MAIN}`,
+          padding: '6px',
+          width: '40px',
+          color: PRIMARY_MAIN,
+          border: `2px solid ${PRIMARY_MAIN}`,
           '&.Mui-selected': {
-            background: SECONDARY_MAIN,
+            background: PRIMARY_MAIN,
             color: '#fff',
             '&:hover': {
-              background: SECONDARY_MAIN,
+              background: PRIMARY_MAIN,
             },
           },
           '&:hover': {
@@ -45,6 +59,15 @@ export const theme = createTheme({
         },
       },
     },
+    MuiButtonBase: {
+      styleOverrides: {
+        root: {
+          ':disabled': {
+            color: '#ccc',
+          },
+        },
+      },
+    },
     MuiGrid: {
       styleOverrides: {
         root: {
@@ -52,10 +75,26 @@ export const theme = createTheme({
         },
       },
     },
+    MuiFormLabel: {
+      styleOverrides: {
+        root: {
+          '&.Mui-focused': {
+            color: PRIMARY_MAIN,
+          },
+        },
+      },
+    },
   },
   palette: {
+    primary: {
+      main: PRIMARY_MAIN,
+    },
     secondary: {
       main: SECONDARY_MAIN,
+    },
+    success: {
+      main: SUCCESS_MAIN,
+      dark: SUCCESS_DARK,
     },
   },
   breakpoints: {
@@ -71,6 +110,12 @@ export const theme = createTheme({
     fontFamily: ['Mulish Variable', 'Roboto', 'sans-serif'].join(','),
     body1: {
       fontSize: '15px',
+    },
+    h6: {
+      textTransform: 'uppercase',
+      fontWeight: 700,
+      fontSize: '18px',
+      color: PRIMARY_MAIN,
     },
     body2: {
       fontSize: '1rem',
