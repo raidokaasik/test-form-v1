@@ -1,3 +1,4 @@
+import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 import React from 'react'
 import { useFormContext as hookFormContext } from 'react-hook-form'
@@ -8,7 +9,7 @@ const PersonalCredentialsSection = () => {
   const { control } = hookFormContext()
 
   return (
-    <>
+    <Box position={'relative'}>
       <Grid container spacing={2}>
         <Grid item xs={6}>
           <MaskField
@@ -20,7 +21,7 @@ const PersonalCredentialsSection = () => {
           />
         </Grid>
       </Grid>
-      <Grid container spacing={2}>
+      <Grid container spacing={2} mt={'1px'}>
         <Grid item xs={6}>
           <OnlyTextField
             control={control}
@@ -40,7 +41,7 @@ const PersonalCredentialsSection = () => {
           />
         </Grid>
       </Grid>
-    </>
+    </Box>
   )
 }
 

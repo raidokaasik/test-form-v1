@@ -1,11 +1,8 @@
-import Typography from '@mui/material/Typography'
 import { useForm, FormProvider } from 'react-hook-form'
 import { useStateMachine } from 'little-state-machine'
 import { setEducation, setFormStage } from '../formActions/actions'
 import { FormStageWrapper } from '../formWrappers/FormStageWrapper'
-import { NextButton } from 'src/components/NextButton'
-import Button from '@mui/material/Button'
-import Box from '@mui/material/Box'
+import { NextButton } from 'src/components/buttons/NextButton'
 import {
   GeneralEducation,
   IGeneralEducation,
@@ -16,6 +13,8 @@ import {
   IAcademicEducation,
   academicEducationDefaultValue,
 } from './educationSections/AcademicEducation'
+import { formStages } from '../Form'
+import { BackButton } from 'src/components/buttons/BackButton'
 
 export interface IEducation {
   generalEducation: IGeneralEducation[]
@@ -46,33 +45,20 @@ export const EducationStage = () => {
 
   const onSubmit = (data: IEducation) => {
     actions.setEducation(data)
-    actions.setFormStage('previousExperience')
+    actions.setFormStage(formStages.PERVIOUS_EXPERIENCE)
   }
 
   const handleBackButton = () => {
     const currentValues = methods.getValues()
     actions.setEducation(currentValues)
-    actions.setFormStage('relations')
+    actions.setFormStage(formStages.RELATIONS)
   }
 
   return (
     <FormStageWrapper
       nextButton={<NextButton id="educationData" label="Järgmine" />}
-      backButton={
-        <Button
-          variant={'contained'}
-          color={'secondary'}
-          onClick={handleBackButton}
-        >
-          tagasi
-        </Button>
-      }
+      backButton={<BackButton label="tagasi" onClick={handleBackButton} />}
     >
-      <Box pl={'16px'} pr={'16px'} pt={'16px'}>
-        <Typography variant="h5" fontWeight={600}>
-          HARIDUSKÄIK
-        </Typography>
-      </Box>
       <FormProvider {...methods}>
         <form
           id="educationData"

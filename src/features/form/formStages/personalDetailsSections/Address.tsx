@@ -5,13 +5,15 @@ import { useFormContext as hookFormContext } from 'react-hook-form'
 import { OnlyTextField } from 'src/components/fields/OnlyTextField'
 import { IPersonalDetailsStage } from '../PersonalDetailsStage'
 import { MaskField, MaskTypes } from 'src/components/fields/MaskField'
+import { DashedDivider } from 'src/components/DashedDivider'
 
 const AddressSection = () => {
   const { control } = hookFormContext<IPersonalDetailsStage>()
 
   return (
     <>
-      <Typography variant="body2">Tegelik elukoht</Typography>
+      <DashedDivider />
+      <Typography variant="h6">Tegelik elukoht</Typography>
       <Grid container spacing={2}>
         <Grid item xs={4}>
           <OnlyTextField

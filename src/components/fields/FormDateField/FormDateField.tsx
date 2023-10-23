@@ -1,6 +1,6 @@
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
-import { Controller } from 'react-hook-form'
+import { Control, Controller } from 'react-hook-form'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { Dayjs } from 'dayjs'
 
@@ -10,7 +10,7 @@ interface FormDateFieldProps {
   label: string
   disabled?: boolean
   helperText: string
-  control: any
+  control: Control<any, string>
   name: string
 }
 
@@ -38,6 +38,7 @@ export const FormDateField = ({
             format="DD-MM-YYYY"
             slotProps={{
               openPickerButton: {
+                disabled: disabled,
                 color: 'primary',
                 disableRipple: true,
                 onBlur: onBlur,

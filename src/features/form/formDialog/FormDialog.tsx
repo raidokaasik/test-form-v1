@@ -18,7 +18,7 @@ export const FormDialog = ({
       PaperProps={{
         sx: {
           boxSizing: 'border-box',
-          width: { xs: '100%', sm: '720px' },
+          width: { xs: '100%', sm: '800px' },
           margin: 0,
           maxWidth: 'unset',
           maxHeight: 'unset',

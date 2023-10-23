@@ -1,6 +1,6 @@
 import TextField from '@mui/material/TextField'
 import React from 'react'
-import { Controller } from 'react-hook-form'
+import { Control, Controller } from 'react-hook-form'
 import { IMaskInput } from 'react-imask'
 
 export enum MaskTypes {
@@ -12,7 +12,7 @@ interface MaskFieldProps {
   label: string
   helperText: string
   name: string
-  control: any
+  control: Control<Record<string, string>>
   type: MaskTypes
   disabled?: boolean
   required?: boolean

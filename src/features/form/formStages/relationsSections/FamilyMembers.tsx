@@ -7,9 +7,10 @@ import Typography from '@mui/material/Typography'
 import Grid from '@mui/material/Grid'
 import Divider from '@mui/material/Divider'
 import Box from '@mui/material/Box'
-import { SmallButton } from 'src/components/buttons/SmallButton'
 import { OnlyTextField } from 'src/components/fields/OnlyTextField'
 import { MaskField, MaskTypes } from 'src/components/fields/MaskField'
+import { RemoveIcon } from 'src/components/icons/RemoveIcon'
+import { AddIcon } from 'src/components/icons/AddIcon'
 
 export interface IFamilyMember {
   firstName: string
@@ -60,12 +61,11 @@ const FamilyMembersSection = () => {
 
   return (
     <>
-      <Typography variant="body2">Sugulased ja hõimlased</Typography>
-      <Typography variant="subtitle2" mb={'10px'}>
+      <Typography variant="h6">Sugulased ja hõimlased</Typography>
+      <Typography variant="body2" mt={'5px'} mb={'16px'}>
         Vanemad (ka kasuvanemad), lapsed (ka kasulapsed), vennad, õed, abikaasa
         või abieluga sarnanevas suhtes olev elukaaslane, endine abikaasa.
       </Typography>
-      <SmallButton onClick={() => append(familyMember)} label="Lisa" />
       <Box overflow={'auto'} height={'100%'}>
         {fields.map((item: IFamilyMember, index: number) => {
           const disabledTypeOfRelation =
@@ -73,19 +73,19 @@ const FamilyMembersSection = () => {
             item.typeOfRelation === Parents.MOTHER
           return (
             <React.Fragment key={item.id}>
-              <Divider sx={{ mt: '16px', mb: '16px', borderStyle: 'dashed' }} />
               <Box
                 width="100%"
                 display={'flex'}
                 justifyContent={'space-between'}
                 alignItems={'center'}
               >
-                <Typography variant="body2" fontSize={'14px'} margin={0}>
+                <Typography variant="body2" margin={0}>
                   Isikuandmed
                 </Typography>
-                {index > 1 && (
-                  <SmallButton onClick={() => remove(index)} label="X" />
+                {index === 1 && (
+                  <AddIcon onClick={() => append(familyMember)} />
                 )}
+                {index > 1 && <RemoveIcon onClick={() => remove(index)} />}
               </Box>
               <Grid container spacing={2}>
                 <Grid item xs={3}>
@@ -106,7 +106,7 @@ const FamilyMembersSection = () => {
                     helperText="Sisestage perekonnanimi"
                   />
                 </Grid>
-                <Grid item xs={2}>
+                <Grid item xs={3}>
                   <OnlyTextField
                     name={`familyMembers.${index}.typeOfRelation` as const}
                     control={control}
@@ -115,7 +115,7 @@ const FamilyMembersSection = () => {
                     disabled={disabledTypeOfRelation}
                   />
                 </Grid>
-                <Grid item xs={4}>
+                <Grid item xs={3}>
                   <MaskField
                     name={`familyMembers.${index}.personalId` as const}
                     control={control}
@@ -125,7 +125,7 @@ const FamilyMembersSection = () => {
                   />
                 </Grid>
               </Grid>
-              <Typography variant="body2" fontSize={'14px'} mt={'16px'}>
+              <Typography variant="body2" mt={'16px'}>
                 Elukoht
               </Typography>
               <Grid container spacing={2} mb={'28px'}>
@@ -170,6 +170,7 @@ const FamilyMembersSection = () => {
                   />
                 </Grid>
               </Grid>
+              <Divider sx={{ mt: '16px', mb: '16px', borderStyle: 'dashed' }} />
             </React.Fragment>
           )
         })}
