@@ -18,24 +18,25 @@ export const Hiring = () => {
         flexDirection={{ xs: 'column', sm: 'row' }}
         gap={'10px'}
       >
-        <Box width={'60%'}>
+        <Box width={{ xs: '100%', sm: '60%' }}>
           <Typography marginTop={'16px'} marginBottom={'16px'} variant="body1">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
             imperdiet varius nibh a consectetur.
           </Typography>
         </Box>
-        <Box width={'40%'}>
+        <Box width={{ xs: '100%', sm: '40%' }}>
           <FormHeader />
           <Box
             width={'100%'}
             display={'flex'}
-            justifyContent={'center'}
+            justifyContent={'flex-end'}
             gap={'10px'}
+            sx={{ mt: '16px' }}
           >
             <Button
               variant="contained"
               color="secondary"
-              sx={{ fontWeight: 500, height: '34px' }}
+              sx={{ fontWeight: 700, height: '34px' }}
               onClick={() => setOpenForm(!openForm)}
             >
               ISIKUANKEET
