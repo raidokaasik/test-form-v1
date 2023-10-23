@@ -12,7 +12,7 @@ interface MaskFieldProps {
   label: string
   helperText: string
   name: string
-  control: Control<Record<string, string>>
+  control: Control<any, string>
   type: MaskTypes
   disabled?: boolean
   required?: boolean
