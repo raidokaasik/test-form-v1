@@ -4,11 +4,22 @@ import { IPersonalDetailsStage } from '../formStages/PersonalDetailsStage'
 import { IPerviousExperience } from '../formStages/PreviousExperience'
 import { IRelations } from '../formStages/RelationsStage'
 import { IAdditionalInformation } from '../formStages/AdditionalInformationStage'
+import { formStages } from '../Form'
 
-export const setFormStage = (state: any, payload: string) => {
+export const setFormStage = (state: GlobalState, payload: formStages) => {
+  const headers = {
+    personalDetails: 'ISIKUANDMED',
+    relations: 'PEREKONDLIKUD JA TUTVUSSIDEMED',
+    education: 'HARIDUSKÄIK',
+    previousExperience: 'VARASEM ELUKÄIK JA TEGEVUS',
+    additionalInformation: 'TÄIENDAV ISIKUTEAVE',
+    result: 'RESULT',
+  }
+
   return {
     ...state,
     formStage: payload,
+    formHeader: headers[payload],
   }
 }
 
@@ -74,5 +85,15 @@ export const setAdditionalInformation = (
       ...state.form,
       additionalInformation: payload,
     },
+  }
+}
+
+export const setProfileImage = (
+  state: GlobalState,
+  payload: string
+): GlobalState => {
+  return {
+    ...state,
+    profileImage: payload,
   }
 }

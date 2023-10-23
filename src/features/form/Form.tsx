@@ -7,6 +7,15 @@ import { IEducation } from './formStages/EducationStage'
 import { IPerviousExperience } from './formStages/PreviousExperience'
 import { IAdditionalInformation } from './formStages/AdditionalInformationStage'
 
+export enum formStages {
+  PERSONALDETAILS = 'personalDetails',
+  RELATIONS = 'relations',
+  EDUCATION = 'education',
+  PERVIOUS_EXPERIENCE = 'previousExperience',
+  ADDITIONAL_INFORATION = 'additionalInformation',
+  RESULT = 'result',
+}
+
 export interface IStore {
   form: {
     personalDetails: IPersonalDetailsStage | null
@@ -15,7 +24,9 @@ export interface IStore {
     previousExperience: IPerviousExperience | null
     additionalInformation: IAdditionalInformation | null
   }
-  formStage: string
+  formStage: formStages
+  formHeader: string
+  profileImage: string | null
 }
 
 createStore(
@@ -30,7 +41,9 @@ createStore(
       previousExperience: null,
       additionalInformation: null,
     },
-    formStage: 'personalDetails',
+    formStage: formStages.PERSONALDETAILS,
+    formHeader: 'ISIKUANDMED',
+    profileImage: null,
   },
   {
     persist: 'none',

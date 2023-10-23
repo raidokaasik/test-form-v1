@@ -7,9 +7,9 @@ import { PerviousExperienceStage } from './formStages/PreviousExperience'
 import { AdditionalInformationStage } from './formStages/AdditionalInformationStage'
 
 export const RenderFormStage = () => {
-  const { state }: any = useStateMachine()
+  const { state } = useStateMachine()
 
-  const stages: any = {
+  const stages: Record<string, React.ReactElement> = {
     personalDetails: <PersonalDetailsStage />,
     relations: <RelationsStage />,
     education: <EducationStage />,
