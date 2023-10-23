@@ -3,8 +3,7 @@ import { useForm, FormProvider } from 'react-hook-form'
 import { useStateMachine } from 'little-state-machine'
 import { setAdditionalInformation, setFormStage } from '../formActions/actions'
 import { FormStageWrapper } from '../formWrappers/FormStageWrapper'
-import { NextButton } from 'src/components/NextButton'
-import Button from '@mui/material/Button'
+import { NextButton } from 'src/components/buttons/NextButton'
 import Box from '@mui/material/Box'
 import {
   ILanguage,
@@ -12,6 +11,8 @@ import {
   languagesDefaultValue,
 } from './additionalInformation/Languages'
 import { Questionnaire } from './additionalInformation/Questionnaire'
+import { formStages } from '../Form'
+import { BackButton } from 'src/components/buttons/BackButton'
 
 export interface IAdditionalInformation {
   languages: ILanguage[] | null
@@ -48,13 +49,13 @@ export const AdditionalInformationStage = () => {
 
   const onSubmit = (data: IAdditionalInformation) => {
     actions.setAdditionalInformation(data)
-    actions.setFormStage('result')
+    actions.setFormStage(formStages.RESULT)
   }
 
   const handleBackButton = () => {
     const currentValues = methods.getValues()
     actions.setAdditionalInformation(currentValues)
-    actions.setFormStage('previousExperience')
+    actions.setFormStage(formStages.PERVIOUS_EXPERIENCE)
   }
 
   return (
@@ -62,21 +63,8 @@ export const AdditionalInformationStage = () => {
       nextButton={
         <NextButton id="additionalInformationData" label="Järgmine" />
       }
-      backButton={
-        <Button
-          variant={'contained'}
-          color={'secondary'}
-          onClick={handleBackButton}
-        >
-          tagasi
-        </Button>
-      }
+      backButton={<BackButton label="tagasi" onClick={handleBackButton} />}
     >
-      <Box pl={'16px'} pr={'16px'} pt={'16px'}>
-        <Typography variant="h5" fontWeight={600}>
-          TÄIENDAV ISIKUTEAVE
-        </Typography>
-      </Box>
       <FormProvider {...methods}>
         <form
           id="additionalInformationData"

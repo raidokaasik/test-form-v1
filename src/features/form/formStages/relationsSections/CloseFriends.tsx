@@ -48,8 +48,8 @@ const CloseFriendsSection = () => {
 
   return (
     <>
-      <Typography variant="body2">Lähemad tuttavad </Typography>
-      <Typography variant="subtitle2" mb={'10px'}>
+      <Typography variant="h6">Lähemad tuttavad </Typography>
+      <Typography variant="body2" mt={'5px'} mb={'16px'}>
         Märkige kaks isikut, kes Teid lähemalt tunnevad ja oskavad Teid
         iseloomustada ning kellega olete viimase kolme aasta jooksul suhelnud.
         Palun ärge märkige abikaasat, abieluga sarnanevas suhtes olevat
@@ -57,8 +57,7 @@ const CloseFriendsSection = () => {
       </Typography>
       {fields.map((item: ICloseFriend, index: number) => (
         <React.Fragment key={item.id}>
-          <DashedDivider />
-          <Typography variant="body2" fontSize={'14px'} margin={0}>
+          <Typography variant="body2" margin={0}>
             Isikuandmed
           </Typography>
           <Grid container spacing={2}>
@@ -89,11 +88,11 @@ const CloseFriendsSection = () => {
               />
             </Grid>
           </Grid>
-          <Typography variant="body2" fontSize={'14px'} marginTop={'16px'}>
+          <Typography variant="body2" marginTop={'16px'}>
             Aadress
           </Typography>
           <Grid container spacing={2} mb={'28px'}>
-            <Grid item xs={3}>
+            <Grid item xs={4}>
               <OnlyTextField
                 capitalize
                 name={`closeFriends.${index}.address.city` as const}
@@ -102,7 +101,7 @@ const CloseFriendsSection = () => {
                 helperText="Sisestage linn"
               />
             </Grid>
-            <Grid item xs={3}>
+            <Grid item xs={4}>
               <OnlyTextField
                 capitalize
                 name={`closeFriends.${index}.address.street` as const}
@@ -111,7 +110,7 @@ const CloseFriendsSection = () => {
                 helperText="Sisestage tänav"
               />
             </Grid>
-            <Grid item xs={3}>
+            <Grid item xs={2}>
               <OnlyTextField
                 allownumbers
                 capitalize
@@ -121,7 +120,7 @@ const CloseFriendsSection = () => {
                 helperText="Sisestage maja number"
               />
             </Grid>
-            <Grid item xs={3}>
+            <Grid item xs={2}>
               <MaskField
                 name={`closeFriends.${index}.address.appartmentNr` as const}
                 control={control}
@@ -132,9 +131,10 @@ const CloseFriendsSection = () => {
               />
             </Grid>
           </Grid>
+          <DashedDivider />
         </React.Fragment>
       ))}
-      <Typography variant="body2" fontSize={'14px'} mb={'10px'}>
+      <Typography variant="body2" mb={'10px'}>
         Ülaltoodud lähituttavate andmete edastamiseks käesolevas isikuankeedis
         olen küsinud neilt nõusoleku ning selgitanud, et nendega võidakse võtta
         ühendust, et selgitada välja minu politseiteenistusse võtmise

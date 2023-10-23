@@ -1,9 +1,11 @@
-import Typography from '@mui/material/Typography'
 import { useForm, FormProvider } from 'react-hook-form'
 import { FormStageWrapper } from '../formWrappers/FormStageWrapper'
-import { NextButton } from '../../../components/NextButton'
+import { NextButton } from '../../../components/buttons/NextButton'
 import { Nationality } from './personalDetailsSections/Nationality'
-import { Communications } from './personalDetailsSections/Communications'
+import {
+  Communications,
+  defaultCommuncationValue,
+} from './personalDetailsSections/Communications'
 import {
   PreviousNames,
   previousNameDefaultValues,
@@ -15,7 +17,7 @@ import { useStateMachine } from 'little-state-machine'
 import { setPersonalDetails, setFormStage } from '../formActions/actions'
 import { DriversLicense } from './personalDetailsSections/DriversLicense'
 import { dateType } from 'src/components/fields/FormDateField/FormDateField'
-import Box from '@mui/material/Box'
+import { formStages } from '../Form'
 
 export type IOrigin = {
   nationality: string
@@ -75,20 +77,15 @@ export const PersonalDetailsStage = () => {
     reValidateMode: 'onChange',
   })
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: IPersonalDetailsStage) => {
     actions.setPersonalDetails(data)
-    actions.setFormStage('relations')
+    actions.setFormStage(formStages.RELATIONS)
   }
 
   return (
     <FormStageWrapper
       nextButton={<NextButton id="personalData" label="Järgmine" />}
     >
-      <Box pl={'16px'} pr={'16px'} pt={'16px'}>
-        <Typography variant="h5" fontWeight={600}>
-          ISIKUANDMED
-        </Typography>
-      </Box>
       <FormProvider {...methods}>
         <form
           id="personalData"
@@ -119,7 +116,7 @@ const getDefaultValues = (personalDetails: IPersonalDetailsStage | null) => {
     firstName: personalDetails?.firstName ?? '',
     lastName: personalDetails?.lastName ?? '',
     origin: {
-      nationality: personalDetails?.origin?.nationality || '',
+      nationality: personalDetails?.origin?.nationality ?? '',
       nativeLanguage: personalDetails?.origin?.nativeLanguage ?? '',
       hasOtherNationalityInfo:
         personalDetails?.origin.hasOtherNationalityInfo ?? false,
@@ -143,10 +140,7 @@ const getDefaultValues = (personalDetails: IPersonalDetailsStage | null) => {
       ],
     },
     communications: personalDetails?.communications ?? [
-      {
-        commType: '',
-        commValue: '',
-      },
+      defaultCommuncationValue,
     ],
     document: {
       docType: personalDetails?.document.docType ?? '',

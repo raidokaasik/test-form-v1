@@ -6,8 +6,12 @@ import {
   useFormContext as hookFormContext,
   useFieldArray,
 } from 'react-hook-form'
-import { SmallButton } from 'src/components/buttons/SmallButton'
 import { IPersonalDetailsStage } from '../PersonalDetailsStage'
+import { DashedDivider } from 'src/components/DashedDivider'
+import { AddIcon } from 'src/components/icons/AddIcon'
+import { RemoveIcon } from 'src/components/icons/RemoveIcon'
+
+export const defaultCommuncationValue = { commType: '', commValue: '' }
 
 const CommunicationsSection = () => {
   const { register } = hookFormContext<IPersonalDetailsStage>()
@@ -18,10 +22,9 @@ const CommunicationsSection = () => {
 
   return (
     <>
-      <Typography variant="body2">
-        Sidevahendite numbrid/aadressid/kasutajatunnused
-      </Typography>
-      <Typography variant="subtitle2">
+      <DashedDivider />
+      <Typography variant="h6">Sidevahendid</Typography>
+      <Typography variant="body2" mt={'5px'} mb={'5px'}>
         Mobiiltelefoni number, e-posti aadress, Skype, muu sidevahendi number
         või kasutajatunnus
       </Typography>
@@ -36,7 +39,7 @@ const CommunicationsSection = () => {
                 {...register(`communications.${index}.commType` as const)}
               />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={7}>
               <TextField
                 fullWidth
                 variant="standard"
@@ -46,7 +49,7 @@ const CommunicationsSection = () => {
             </Grid>
             <Grid
               item
-              xs={2}
+              xs={1}
               sx={{
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -54,13 +57,12 @@ const CommunicationsSection = () => {
               }}
             >
               {index > 0 ? (
-                <SmallButton onClick={() => remove(index)} label="X" />
+                <RemoveIcon onClick={() => remove(index)} />
               ) : (
-                <SmallButton
+                <AddIcon
                   onClick={() => {
-                    append({ commType: '', commValue: '' })
+                    append(defaultCommuncationValue)
                   }}
-                  label="Lisa"
                 />
               )}
             </Grid>

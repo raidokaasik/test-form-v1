@@ -1,8 +1,8 @@
 import React from 'react'
 import { useFormContext as hookFormContext } from 'react-hook-form'
 import Box from '@mui/material/Box'
-import { QuestionnaireElement } from 'src/components/fields/QuestionnaireElement'
 import data from './questions.json'
+import { QuestionnaireElement } from 'src/components/QuestionnaireElement'
 
 export interface IQuestions {
   belongToAPoliticalParty: boolean

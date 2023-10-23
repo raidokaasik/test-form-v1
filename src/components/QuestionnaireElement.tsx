@@ -1,11 +1,11 @@
 import Box from '@mui/material/Box'
 import Checkbox from '@mui/material/Checkbox'
 import Typography from '@mui/material/Typography'
-import { Controller } from 'react-hook-form'
+import { Control, Controller } from 'react-hook-form'
 
 interface QuestionnaireElementProps {
   name: string
-  control: any
+  control: Control<Record<string, boolean>>
   text: string
 }
 

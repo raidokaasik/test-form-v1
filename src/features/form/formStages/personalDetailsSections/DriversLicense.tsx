@@ -1,15 +1,12 @@
-import Checkbox from '@mui/material/Checkbox'
-import FormControl from '@mui/material/FormControl'
-import FormLabel from '@mui/material/FormLabel'
 import Grid from '@mui/material/Grid'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 import React from 'react'
-import { useState } from 'react'
 import { useFormContext as hookFormContext } from 'react-hook-form'
-
 import { IPersonalDetailsStage } from '../PersonalDetailsStage'
 import { FormDateField } from 'src/components/fields/FormDateField/FormDateField'
+import { DashedDivider } from 'src/components/DashedDivider'
+import { CustomToggleButton } from 'src/components/toggle/CustomToggleButton'
 
 const DriversLicenseSection = () => {
   const {
@@ -20,41 +17,37 @@ const DriversLicenseSection = () => {
     formState: { errors, defaultValues },
   } = hookFormContext<IPersonalDetailsStage>()
 
-  const [driversLicense, setDriversLicense] = useState<boolean>(
+  const [driversLicense, setDriversLicense] = React.useState<boolean>(
     defaultValues?.driversLicense?.hasLicense ?? false
   )
 
-  const handleHasLicenseCheckbox = (
-    _: React.ChangeEvent<HTMLInputElement>,
-    checked: boolean
-  ) => {
+  const handleHasLicenseCheckbox = (checked: boolean) => {
     if (!checked) {
       clearErrors('driversLicense')
       setValue('driversLicense.categories', '')
       setValue('driversLicense.date', null)
     }
     setDriversLicense(!driversLicense)
-    setValue('driversLicense.hasLicense', !driversLicense)
   }
 
   return (
     <>
-      <Typography variant="body2">
+      <DashedDivider />
+      <Typography variant="h6">juhtimisõigus</Typography>
+      <Typography variant="body2" mt={'5px'}>
         Juhtimisõiguse omamise korral märkige juhiloa väljaandmise kuupäev ja
         missuguse kategooria sõidukeid on lubatud juhtida
       </Typography>
       <Grid container spacing={2}>
         <Grid item xs={4}>
-          <FormControl sx={{ flexDirection: 'row', height: '42px' }}>
-            <FormLabel sx={{ display: 'flex', alignItems: 'center' }}>
-              Juhtimisõigus
-            </FormLabel>
-            <Checkbox
-              disableRipple
-              checked={driversLicense}
-              onChange={handleHasLicenseCheckbox}
-            />
-          </FormControl>
+          <CustomToggleButton
+            control={control}
+            name={'driversLicense.hasLicense'}
+            label={'Juhtimisõigus'}
+            alignment="row"
+            onOtherChange={handleHasLicenseCheckbox}
+            sx={{ mt: '10px' }}
+          />
         </Grid>
       </Grid>
       {driversLicense && (

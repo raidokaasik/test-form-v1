@@ -1,11 +1,8 @@
-import Typography from '@mui/material/Typography'
 import { useForm, FormProvider } from 'react-hook-form'
 import { useStateMachine } from 'little-state-machine'
 import { setFormStage, setPreviousExperience } from '../formActions/actions'
 import { FormStageWrapper } from '../formWrappers/FormStageWrapper'
-import { NextButton } from 'src/components/NextButton'
-import Button from '@mui/material/Button'
-import Box from '@mui/material/Box'
+import { NextButton } from 'src/components/buttons/NextButton'
 import {
   IWorkExperience,
   WorkExperience,
@@ -16,6 +13,8 @@ import {
   IArmyExperience,
   armyExperienceDefaultValue,
 } from './previousExperience/ArmyExperience'
+import { formStages } from '../Form'
+import { BackButton } from 'src/components/buttons/BackButton'
 
 export interface IPerviousExperience {
   workExperience: IWorkExperience[] | null
@@ -49,33 +48,20 @@ export const PerviousExperienceStage = () => {
 
   const onSubmit = (data: IPerviousExperience) => {
     actions.setPreviousExperience(data)
-    actions.setFormStage('additionalInformation')
+    actions.setFormStage(formStages.ADDITIONAL_INFORATION)
   }
 
   const handleBackButton = () => {
     const currentValues = methods.getValues()
     actions.setPreviousExperience(currentValues)
-    actions.setFormStage('education')
+    actions.setFormStage(formStages.EDUCATION)
   }
 
   return (
     <FormStageWrapper
       nextButton={<NextButton id="previousExperienceData" label="Järgmine" />}
-      backButton={
-        <Button
-          variant={'contained'}
-          color={'secondary'}
-          onClick={handleBackButton}
-        >
-          tagasi
-        </Button>
-      }
+      backButton={<BackButton label="tagasi" onClick={handleBackButton} />}
     >
-      <Box pl={'16px'} pr={'16px'} pt={'16px'}>
-        <Typography variant="h5" fontWeight={600}>
-          VARASEM ELUKÄIK JA TEGEVUS
-        </Typography>
-      </Box>
       <FormProvider {...methods}>
         <form
           id="previousExperienceData"

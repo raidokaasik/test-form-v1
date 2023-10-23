@@ -6,6 +6,7 @@ import { useFormContext as hookFormContext } from 'react-hook-form'
 import { IPersonalDetailsStage } from '../PersonalDetailsStage'
 import { OnlyTextField } from 'src/components/fields/OnlyTextField'
 import { FormDateField } from 'src/components/fields/FormDateField/FormDateField'
+import { DashedDivider } from 'src/components/DashedDivider'
 
 const DocumentSection = () => {
   const {
@@ -16,8 +17,10 @@ const DocumentSection = () => {
 
   return (
     <>
-      <Typography variant="body2">
-        Isikut tõendav dokument (isikutunnistus, pass)
+      <DashedDivider />
+      <Typography variant="h6">Isikut tõendav dokument</Typography>
+      <Typography variant="body2" mt={'5px'} mb={'5px'}>
+        Isikutunnistus, pass
       </Typography>
       <Grid container spacing={2}>
         <Grid item xs={6}>

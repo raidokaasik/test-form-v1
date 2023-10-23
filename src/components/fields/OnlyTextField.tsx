@@ -1,14 +1,14 @@
 import React from 'react'
 import { IMaskInput } from 'react-imask'
 import { onlyLetters, onlyLettersAndNumbers } from '../../utils/validations'
-import { Controller } from 'react-hook-form'
+import { Control, Controller } from 'react-hook-form'
 import { capitalizeFirstLetter } from 'src/utils/helpers'
 import TextField from '@mui/material/TextField'
 
 interface OnlyTextFieldProps {
   label: string
   helperText: string
-  control: any
+  control: Control<any, string>
   name: string
   capitalize?: boolean
   disabled?: boolean

@@ -1,8 +1,5 @@
-import Typography from '@mui/material/Typography'
-import Button from '@mui/material/Button'
 import { FormStageWrapper } from '../formWrappers/FormStageWrapper'
-import { NextButton } from '../../../components/NextButton'
-import Box from '@mui/material/Box'
+import { NextButton } from '../../../components/buttons/NextButton'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useStateMachine } from 'little-state-machine'
 import { setFormStage, setRelations } from '../formActions/actions'
@@ -17,6 +14,8 @@ import {
   ICloseFriend,
   closeFriend,
 } from './relationsSections/CloseFriends'
+import { BackButton } from 'src/components/buttons/BackButton'
+import { formStages } from '../Form'
 
 export interface IRelations {
   familyMembers: IFamilyMember[] | null
@@ -51,35 +50,22 @@ export const RelationsStage = () => {
     mode: 'onBlur',
   })
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: IRelations) => {
     actions.setRelations(data)
-    actions.setFormStage('education')
+    actions.setFormStage(formStages.EDUCATION)
   }
 
   const handleBackButton = () => {
     const currentValues = methods.getValues()
     actions.setRelations(currentValues)
-    actions.setFormStage('personalDetails')
+    actions.setFormStage(formStages.PERSONALDETAILS)
   }
 
   return (
     <FormStageWrapper
       nextButton={<NextButton id="relations" label="Järgmine" />}
-      backButton={
-        <Button
-          variant={'contained'}
-          color={'secondary'}
-          onClick={handleBackButton}
-        >
-          tagasi
-        </Button>
-      }
+      backButton={<BackButton label="tagasi" onClick={handleBackButton} />}
     >
-      <Box pl={'16px'} pr={'16px'} mt="16px">
-        <Typography variant="h5" fontWeight={600}>
-          PEREKONDLIKUD JA TUTVUSSIDEMED
-        </Typography>
-      </Box>
       <FormProvider {...methods}>
         <form
           id="relations"

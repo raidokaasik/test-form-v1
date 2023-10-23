@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
-import Checkbox from '@mui/material/Checkbox'
-import FormControl from '@mui/material/FormControl'
-import FormLabel from '@mui/material/FormLabel'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import { useFormContext as hookFormContext } from 'react-hook-form'
 import { IPersonalDetailsStage } from '../PersonalDetailsStage'
 import { OnlyTextField } from 'src/components/fields/OnlyTextField'
 import { FormDateField } from 'src/components/fields/FormDateField/FormDateField'
+import { CustomToggleButton } from 'src/components/toggle/CustomToggleButton'
+import { DashedDivider } from 'src/components/DashedDivider'
+import { CustomCheckBox } from 'src/components/checkbox/CustomCheckBox'
 
 const defaultOtherFields = {
   nationality: '',
@@ -29,33 +29,27 @@ const NationalitySection = () => {
   const [otherNationalityStillValid, setOtherNationalityStillValid] =
     useState<boolean>(defaultValues?.origin?.other?.present ?? false)
 
-  const handleOtherNationalityCheckbox = (
-    _: React.ChangeEvent<HTMLInputElement>,
-    checked: boolean
-  ) => {
+  const handleOtherNationality = (checked: boolean) => {
     if (!checked) {
       setValue('origin.other', defaultOtherFields)
       clearErrors('origin.other')
     }
     setOtherNationality(!otherNationality)
-    setValue('origin.hasOtherNationalityInfo', !otherNationality)
   }
 
-  const handleStillValidCheckbox = (
-    _: React.ChangeEvent<HTMLInputElement>,
-    checked: boolean
-  ) => {
+  const handleStillValidCheckbox = (checked: boolean) => {
     if (checked) {
       clearErrors('origin.other.to')
       setValue('origin.other.to', null)
     }
     setOtherNationalityStillValid(!otherNationalityStillValid)
-    setValue('origin.other.present', !otherNationalityStillValid)
   }
 
   return (
     <>
-      <Typography variant="body2">
+      <DashedDivider />
+      <Typography variant="h6">Kodakondsus</Typography>
+      <Typography variant="body2" mt={'5px'} mb={'5px'}>
         Kui Teil on või on olnud lisaks Eesti kodakondsusele veel teise riigi
         kodakondsus, siis millise riigi kodakondsus Teil on või on olnud? Palume
         märkida ajavahemik, millal Teil oli teise riigi kodakondsus või mis
@@ -81,18 +75,16 @@ const NationalitySection = () => {
           />
         </Grid>
         <Grid item xs={4}>
-          <FormControl>
-            <FormLabel>Teine kodakondsus</FormLabel>
-            <Checkbox
-              checked={otherNationality}
-              disableRipple
-              onChange={handleOtherNationalityCheckbox}
-            />
-          </FormControl>
+          <CustomToggleButton
+            name={'origin.hasOtherNationalityInfo'}
+            onOtherChange={handleOtherNationality}
+            control={control}
+            label={'Teine kodakondsus'}
+          />
         </Grid>
       </Grid>
       {otherNationality && (
-        <Grid container spacing={2}>
+        <Grid container spacing={2} mt={'1px'}>
           <Grid item xs={4}>
             <OnlyTextField
               control={control}
@@ -120,15 +112,12 @@ const NationalitySection = () => {
             />
           </Grid>
           <Grid item xs={2}>
-            <FormControl>
-              <FormLabel>Kehtiv</FormLabel>
-              <Checkbox
-                sx={{ pb: '16px' }}
-                checked={otherNationalityStillValid}
-                disableRipple
-                onChange={handleStillValidCheckbox}
-              />
-            </FormControl>
+            <CustomCheckBox
+              name="origin.other.present"
+              control={control}
+              label="Kehtiv"
+              onOtherChange={handleStillValidCheckbox}
+            />
           </Grid>
         </Grid>
       )}
