@@ -1,11 +1,11 @@
 import Box from '@mui/material/Box'
-import Checkbox from '@mui/material/Checkbox'
 import Typography from '@mui/material/Typography'
-import { Control, Controller } from 'react-hook-form'
+import { Control } from 'react-hook-form'
+import { CustomToggleButton } from './toggle/CustomToggleButton'
 
 interface QuestionnaireElementProps {
   name: string
-  control: Control<Record<string, boolean>>
+  control: Control<any, boolean>
   text: string
 }
 
@@ -15,27 +15,16 @@ export const QuestionnaireElement = ({
   text,
 }: QuestionnaireElementProps) => {
   return (
-    <Box display={'flex'} alignItems={'center'} mb={'24px'}>
-      <Typography variant="body2" fontSize={'14px'} margin={0}>
+    <Box
+      display={'flex'}
+      alignItems={'center'}
+      mb={'32px'}
+      justifyContent={'space-between'}
+    >
+      <Typography variant="body2" margin={0}>
         {text}
       </Typography>
-      <Controller
-        name={name}
-        control={control}
-        render={({ field: { ref, name, onChange, value } }) => {
-          return (
-            <Checkbox
-              name={name}
-              disableRipple
-              inputRef={ref}
-              checked={value}
-              onChange={(_, value) => {
-                onChange(value)
-              }}
-            />
-          )
-        }}
-      />
+      <CustomToggleButton name={name} control={control} />
     </Box>
   )
 }

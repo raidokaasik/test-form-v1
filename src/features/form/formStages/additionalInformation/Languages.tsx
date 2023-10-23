@@ -2,12 +2,13 @@ import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import React from 'react'
 import { DashedDivider } from 'src/components/DashedDivider'
-import { SmallButton } from 'src/components/buttons/SmallButton'
 import { OnlyTextField } from 'src/components/fields/OnlyTextField'
 import {
   useFormContext as hookFormContext,
   useFieldArray,
 } from 'react-hook-form'
+import { RemoveIcon } from 'src/components/icons/RemoveIcon'
+import { AddIcon } from 'src/components/icons/AddIcon'
 
 export const languagesDefaultValue: ILanguage = {
   language: '',
@@ -36,7 +37,7 @@ const LanguageSection = () => {
   })
   return (
     <>
-      <Typography variant="body2">
+      <Typography variant="h6">
         Keelte valdamine (A1, A2; B1, B2; C1, C2)
       </Typography>
       <Typography variant="subtitle2" mb={'10px'}>
@@ -45,9 +46,8 @@ const LanguageSection = () => {
       {fields.map((item: ILanguage, index: number) => {
         return (
           <React.Fragment key={item.id}>
-            <DashedDivider />
             <Grid container spacing={2} mb={'28px'}>
-              <Grid item xs={5}>
+              <Grid item xs={6}>
                 <OnlyTextField
                   capitalize
                   name={`languages.${index}.language` as const}
@@ -66,17 +66,15 @@ const LanguageSection = () => {
                   helperText="Sisestage tase"
                 />
               </Grid>
-              <Grid item xs={2} display={'flex'} alignItems={'center'}>
+              <Grid item xs={1} display={'flex'} alignItems={'center'}>
                 {index > 0 ? (
-                  <SmallButton onClick={() => remove(index)} label="X" />
+                  <RemoveIcon onClick={() => remove(index)} />
                 ) : (
-                  <SmallButton
-                    onClick={() => append(languagesDefaultValue)}
-                    label="Lisa"
-                  />
+                  <AddIcon onClick={() => append(languagesDefaultValue)} />
                 )}
               </Grid>
             </Grid>
+            <DashedDivider />
           </React.Fragment>
         )
       })}
