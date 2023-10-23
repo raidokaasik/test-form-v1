@@ -5,6 +5,7 @@ import { FormStageWrapper } from '../formWrappers/FormStageWrapper'
 import { setFormStage } from '../formActions/actions'
 import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
+import { formStages } from '../Form'
 
 export const Result = () => {
   const {
@@ -22,7 +23,7 @@ export const Result = () => {
   useEffect(() => {}, [])
 
   const handleBackButton = () => {
-    actions.setFormStage('additionalInformation')
+    actions.setFormStage(formStages.ADDITIONAL_INFORATION)
   }
 
   return (
