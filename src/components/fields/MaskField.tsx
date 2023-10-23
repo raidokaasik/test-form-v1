@@ -4,8 +4,8 @@ import { Control, Controller } from 'react-hook-form'
 import { IMaskInput } from 'react-imask'
 
 export enum MaskTypes {
-  ID = '00000000000',
-  NUMBER = 'Number',
+  ID,
+  NUMBER,
 }
 
 interface MaskFieldProps {

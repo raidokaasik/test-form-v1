@@ -62,33 +62,3 @@ export const FormDateField = ({
     />
   )
 }
-//   <FormControl sx={{ mt: '16px' }}>
-//     <InputLabel
-//       sx={{ transform: 'translate(0px, -16px) scale(0.75)' }}
-//       shrink
-//     >
-//       {label}
-//     </InputLabel>
-//     <LocalizationProvider dateAdapter={AdapterDayjs}>
-//       <DatePicker
-//         value={value}
-//         disabled={disabled}
-//         onChange={handleChange}
-//         format="DD-MM-YYYY"
-//         slotProps={{
-//           openPickerButton: {
-//             color: 'primary',
-//           },
-//           inputAdornment: {
-//             position: 'end',
-//           },
-//           textField: {
-//             variant: 'standard',
-//             error: error,
-//             helperText: helperText,
-//           },
-//         }}
-//       />
-//     </LocalizationProvider>
-//   </FormControl>
-// )
